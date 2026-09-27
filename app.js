@@ -47,7 +47,7 @@ $('chooseStation').onclick=setup;$('stationForm').onsubmit=e=>{e.preventDefault(
 for(const b of document.querySelectorAll('[data-module]')){b.classList.remove('new');b.onclick=()=>show(b.dataset.module)}
 window.addEventListener('storage',e=>{if(e.key===KEY){people=read();stats();if($('results'))renderSearch();if(selected&&$('detail'))openPerson(selected)}});
 function connectivity(){$('connection').textContent=navigator.onLine?'Connection available':'Offline · records stay on this device'}window.addEventListener('online',connectivity);window.addEventListener('offline',connectivity);connectivity();stats();if(!station)setup();
-if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
+if('serviceWorker'in navigator){navigator.serviceWorker.register('./sw.js').then(r=>r.update()).catch(()=>{});}
 
 if(SAMPLE_MODE)localStorage.setItem('pdw27-sample-feature-seen','1');
 const groupBanner=document.createElement('div');groupBanner.className='hint';groupBanner.style.maxWidth='1064px';groupBanner.style.margin='12px auto';
