@@ -159,3 +159,31 @@ body:has(#content:not([hidden]))>.wrap{
  #view #walkForm{padding:9px}
  #view .pass{padding:10px;margin:5px auto}
 }
+
+
+/* BUILD 64 — compact module card: remove the tall empty white area.
+   The module stays within the viewport, but the card only uses the height its content needs. */
+body:has(#content:not([hidden])){
+  height:auto;min-height:100vh;min-height:100dvh;
+  overflow-y:auto;display:block;
+}
+body:has(#content:not([hidden]))>.wrap{
+  height:auto;min-height:0;overflow:visible;
+  padding:10px 12px 18px;
+}
+#content:not([hidden]){
+  height:auto;min-height:0;
+  max-height:calc(100vh - 74px);
+  max-height:calc(100dvh - 74px);
+  overflow:auto;
+  margin:0 auto;
+}
+@media(max-width:600px){
+  body:has(#content:not([hidden]))>.wrap{padding:7px 6px 12px}
+  #content:not([hidden]){
+    height:auto;min-height:0;
+    max-height:calc(100vh - 56px);
+    max-height:calc(100dvh - 56px);
+    margin:0 auto;
+  }
+}
