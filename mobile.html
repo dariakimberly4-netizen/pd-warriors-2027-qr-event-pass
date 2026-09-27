@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>PD Warriors 2027 QR Event Pass</title>
-<link rel="stylesheet" href="responsive-v100.css?v=100">
+<link rel="stylesheet" href="responsive-v101.css?v=101">
 </head>
-<body data-build="100" data-screen="orbit">
+<body data-build="101" data-screen="orbit">
 <div class="toolbar">
   <span id="connection"></span>
   <button id="chooseStation" class="secondary"><span id="stationLabel">Choose station</span> ▾</button>
@@ -24,15 +24,45 @@
     </div>
 
     <nav class="poster-orbit" aria-label="Event modules">
-      <img src="assets/event-portal.jpg?v=100" width="1024" height="1536" alt="Parkinson’s Disease Warriors Philippines — Get Together 2027 event portal. One QR for attendance, snack, lunch and raffle.">
-      <button type="button" class="poster-hotspot" data-module="registration" aria-label="Attendance" title="Attendance" style="--x:49.90234%;--y:28.71094%"><span class="sr-only">Attendance</span></button>
-      <button type="button" class="poster-hotspot" data-module="walkin" aria-label="Walk-in" title="Walk-in" style="--x:75%;--y:35.28646%"><span class="sr-only">Walk-in</span></button>
-      <button type="button" class="poster-hotspot" data-module="snack" aria-label="Snack" title="Snack" style="--x:85.9375%;--y:50.78125%"><span class="sr-only">Snack</span></button>
-      <button type="button" class="poster-hotspot" data-module="lunch" aria-label="Lunch" title="Lunch" style="--x:75.48828%;--y:66.53646%"><span class="sr-only">Lunch</span></button>
-      <button type="button" class="poster-hotspot" data-module="raffle" aria-label="Raffle" title="Raffle" style="--x:49.90234%;--y:73.82812%"><span class="sr-only">Raffle</span></button>
-      <button type="button" class="poster-hotspot" data-module="scan" aria-label="QR scan" title="QR scan" style="--x:24.12109%;--y:66.60156%"><span class="sr-only">QR scan</span></button>
-      <button type="button" class="poster-hotspot" data-module="attendees" aria-label="Roster" title="Roster" style="--x:13.76953%;--y:50.78125%"><span class="sr-only">Roster</span></button>
-      <button type="button" class="poster-hotspot" data-module="report" aria-label="Reports & setup" title="Reports & setup" style="--x:24.41406%;--y:35.28646%"><span class="sr-only">Reports & setup</span></button>
+      <svg class="poster-art poster-art-mobile" viewBox="0 0 1024 2030" preserveAspectRatio="none" aria-hidden="true">
+        <svg x="0" y="0" width="1024" height="250" viewBox="0 0 1024 100" preserveAspectRatio="none">
+          <image href="assets/event-portal.jpg?v=101" x="0" y="0" width="1024" height="1536"></image>
+        </svg>
+        <svg x="0" y="250" width="1024" height="1300" viewBox="0 100 1024 1300" preserveAspectRatio="none">
+          <image href="assets/event-portal.jpg?v=101" x="0" y="0" width="1024" height="1536"></image>
+        </svg>
+        <svg x="0" y="1550" width="1024" height="480" viewBox="0 1400 1024 136" preserveAspectRatio="none">
+          <image href="assets/event-portal.jpg?v=101" x="0" y="0" width="1024" height="1536"></image>
+        </svg>
+      </svg>
+      <svg class="poster-art poster-art-desktop" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+        <rect x="0" y="0" width="1920" height="1080" fill="#fefcf0"></rect>
+        <ellipse cx="-20" cy="-120" rx="580" ry="430" fill="#065034"></ellipse>
+        <ellipse cx="-20" cy="-120" rx="530" ry="380" fill="#d8ad37"></ellipse>
+        <ellipse cx="-20" cy="-120" rx="485" ry="335" fill="#fefcf0"></ellipse>
+        <ellipse cx="1940" cy="-120" rx="580" ry="430" fill="#065034"></ellipse>
+        <ellipse cx="1940" cy="-120" rx="530" ry="380" fill="#d8ad37"></ellipse>
+        <ellipse cx="1940" cy="-120" rx="485" ry="335" fill="#fefcf0"></ellipse>
+        <ellipse cx="-20" cy="1200" rx="640" ry="500" fill="#065034"></ellipse>
+        <ellipse cx="-20" cy="1200" rx="585" ry="450" fill="#d8ad37"></ellipse>
+        <ellipse cx="-20" cy="1200" rx="535" ry="405" fill="#fefcf0"></ellipse>
+        <ellipse cx="1940" cy="1200" rx="640" ry="500" fill="#065034"></ellipse>
+        <ellipse cx="1940" cy="1200" rx="585" ry="450" fill="#d8ad37"></ellipse>
+        <ellipse cx="1940" cy="1200" rx="535" ry="405" fill="#fefcf0"></ellipse>
+        <line x1="60" y1="270" x2="555" y2="270" stroke="#d8ad37" stroke-width="2"></line>
+        <line x1="1365" y1="270" x2="1860" y2="270" stroke="#d8ad37" stroke-width="2"></line>
+        <line x1="60" y1="810" x2="555" y2="810" stroke="#d8ad37" stroke-width="2"></line>
+        <line x1="1365" y1="810" x2="1860" y2="810" stroke="#d8ad37" stroke-width="2"></line>
+        <image href="assets/event-portal.jpg?v=101" x="600" y="0" width="720" height="1080"></image>
+      </svg>
+      <button type="button" class="poster-hotspot" data-module="registration" aria-label="Attendance" title="Attendance" style="--mx:49.90234%;--my:29.11330%;--dx:49.96338%;--dy:28.71094%"><span class="sr-only">Attendance</span></button>
+      <button type="button" class="poster-hotspot" data-module="walkin" aria-label="Walk-in" title="Walk-in" style="--mx:75%;--my:34.08867%;--dx:59.375%;--dy:35.28646%"><span class="sr-only">Walk-in</span></button>
+      <button type="button" class="poster-hotspot" data-module="snack" aria-label="Snack" title="Snack" style="--mx:85.9375%;--my:45.81281%;--dx:63.47656%;--dy:50.78125%"><span class="sr-only">Snack</span></button>
+      <button type="button" class="poster-hotspot" data-module="lunch" aria-label="Lunch" title="Lunch" style="--mx:75.48828%;--my:57.73399%;--dx:59.55811%;--dy:66.53646%"><span class="sr-only">Lunch</span></button>
+      <button type="button" class="poster-hotspot" data-module="raffle" aria-label="Raffle" title="Raffle" style="--mx:49.90234%;--my:63.25123%;--dx:49.96338%;--dy:73.82812%"><span class="sr-only">Raffle</span></button>
+      <button type="button" class="poster-hotspot" data-module="scan" aria-label="QR scan" title="QR scan" style="--mx:24.12109%;--my:57.78325%;--dx:40.29541%;--dy:66.60156%"><span class="sr-only">QR scan</span></button>
+      <button type="button" class="poster-hotspot" data-module="attendees" aria-label="Roster" title="Roster" style="--mx:13.76953%;--my:45.81281%;--dx:36.41357%;--dy:50.78125%"><span class="sr-only">Roster</span></button>
+      <button type="button" class="poster-hotspot" data-module="report" aria-label="Reports & setup" title="Reports & setup" style="--mx:24.41406%;--my:34.08867%;--dx:40.40527%;--dy:35.28646%"><span class="sr-only">Reports & setup</span></button>
     </nav>
   </div>
 
@@ -59,6 +89,6 @@
 <script src="vendor/qrcode.js"></script>
 <script src="vendor/qrcode-utf8.js"></script>
 <script src="vendor/jsQR.js"></script>
-<script src="app.js?v=100"></script>
+<script src="app.js?v=101"></script>
 </body>
 </html>
