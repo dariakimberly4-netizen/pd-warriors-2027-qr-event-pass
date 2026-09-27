@@ -526,6 +526,189 @@ html.force-phone-ui .empty-state p{
   font-size:14px!important;
   line-height:1.45!important;
 }
+</style><script id="force-phone-ui-v75">
+(function(){
+  try{
+    var ua=navigator.userAgent||'';
+    var isPhone=/Android|iPhone|iPod|Mobile/i.test(ua) ||
+      (navigator.userAgentData && navigator.userAgentData.mobile) ||
+      Math.min(screen.width||9999,screen.height||9999) <= 600;
+    if(isPhone) document.documentElement.classList.add('phone-ui');
+  }catch(e){}
+})();
+</script><style id="phone-ui-v75">
+html.phone-ui,html.phone-ui body{width:100%!important;max-width:100%!important;overflow-x:hidden!important}
+html.phone-ui body:has(#content:not([hidden])){
+  height:100dvh!important;
+  min-height:100dvh!important;
+  margin:0!important;
+  display:grid!important;
+  grid-template-rows:52px minmax(0,1fr)!important;
+  overflow:hidden!important;
+  background:#fffdf8!important;
+  font-size:16px!important;
+}
+html.phone-ui body:has(#content:not([hidden]))>.toolbar{
+  position:relative!important;
+  width:100%!important;
+  min-height:52px!important;
+  margin:0!important;
+  padding:8px 10px!important;
+  font-size:13px!important;
+}
+html.phone-ui body:has(#content:not([hidden]))>.wrap{
+  width:100%!important;
+  max-width:none!important;
+  height:100%!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+}
+html.phone-ui #content:not([hidden]){
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:16px 16px 18px!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  background:#fffdf8!important;
+  overflow-y:auto!important;
+  display:flex!important;
+  flex-direction:column!important;
+}
+html.phone-ui #content #back{
+  flex:none!important;
+  min-height:38px!important;
+  padding:3px 0 6px!important;
+  font-size:14px!important;
+}
+html.phone-ui .module-eyebrow{
+  flex:none!important;
+  margin:4px 0 4px!important;
+  font-size:10px!important;
+  line-height:1.3!important;
+  letter-spacing:.1em!important;
+}
+html.phone-ui #viewTitle{
+  flex:none!important;
+  margin:0 0 7px!important;
+  font-size:31px!important;
+  line-height:1.06!important;
+}
+html.phone-ui .module-description{
+  flex:none!important;
+  margin:0 0 10px!important;
+  max-width:none!important;
+  font-size:15px!important;
+  line-height:1.4!important;
+}
+html.phone-ui .module-steps{
+  flex:none!important;
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:4px!important;
+  margin:0 0 10px!important;
+  padding:8px 0!important;
+}
+html.phone-ui .module-steps li{
+  justify-content:flex-start!important;
+  text-align:left!important;
+  font-size:12px!important;
+  line-height:1.3!important;
+  gap:7px!important;
+}
+html.phone-ui .module-steps li:before{font-size:10px!important}
+html.phone-ui .module-summary{
+  flex:none!important;
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:7px!important;
+  margin:0 0 12px!important;
+}
+html.phone-ui .module-summary div{
+  min-width:0!important;
+  min-height:72px!important;
+  padding:10px 8px!important;
+}
+html.phone-ui .module-summary b{
+  display:block!important;
+  margin-bottom:5px!important;
+  font-size:28px!important;
+  line-height:1!important;
+}
+html.phone-ui .module-summary span{
+  display:block!important;
+  font-size:11px!important;
+  line-height:1.2!important;
+}
+html.phone-ui #view{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  padding-top:10px!important;
+  display:flex!important;
+  flex-direction:column!important;
+}
+html.phone-ui #view label{
+  flex:none!important;
+  margin-bottom:5px!important;
+  font-size:14px!important;
+  line-height:1.35!important;
+}
+html.phone-ui #view input:not([type=checkbox]):not([type=file]):not([type=radio]),
+html.phone-ui #view select{
+  flex:none!important;
+  width:100%!important;
+  min-height:50px!important;
+  margin:5px 0 9px!important;
+  padding:12px 13px!important;
+  font-size:16px!important;
+}
+html.phone-ui #view .actions{
+  flex:none!important;
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:8px!important;
+  margin:8px 0 11px!important;
+}
+html.phone-ui #view .actions>*,
+html.phone-ui #view button,
+html.phone-ui #view .button{
+  width:100%!important;
+  min-width:0!important;
+  min-height:48px!important;
+  margin:0!important;
+  padding:11px 12px!important;
+  font-size:14px!important;
+  line-height:1.25!important;
+}
+html.phone-ui #results{
+  flex:1 1 auto!important;
+  min-height:150px!important;
+  margin-top:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+}
+html.phone-ui .empty-state{
+  flex:1 1 auto!important;
+  min-height:150px!important;
+  margin:0!important;
+  padding:24px 16px!important;
+  display:grid!important;
+  place-content:center!important;
+}
+html.phone-ui .empty-state strong{
+  margin-bottom:8px!important;
+  font-size:23px!important;
+  line-height:1.2!important;
+}
+html.phone-ui .empty-state p{
+  font-size:14px!important;
+  line-height:1.4!important;
+}
 </style></head><body data-build="75">
 <div class="toolbar"><span id="connection"></span><button id="chooseStation" class="secondary"><span id="stationLabel">Choose station</span> ▾</button></div>
 <main class="wrap"><div id="notice" role="status" hidden></div><div id="orbitHome"><div class="stats"><div class="stat"><b id="total">0</b>Participants</div><div class="stat"><b id="reg">0</b>Attendance</div><div class="stat"><b id="snack">0</b>Snacks claimed</div><div class="stat"><b id="lunch">0</b>Lunches claimed</div></div>
