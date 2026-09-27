@@ -1,5 +1,5 @@
-const CACHE='pdw27-offline-v76';
-const ASSETS=['./','./index.html','./app.js?v=76','./modules-v73.css?v=76','./assets/event-portal.jpg?v=72','./vendor/qrcode.js','./vendor/qrcode-utf8.js','./vendor/jsQR.js'];
+const CACHE='pdw27-offline-v77';
+const ASSETS=['./','./index.html','./mobile.html','./mobile.css?v=77','./app.js?v=77','./modules-v73.css?v=77','./assets/event-portal.jpg?v=77','./vendor/qrcode.js','./vendor/qrcode-utf8.js','./vendor/jsQR.js'];
 
 self.addEventListener('install',e=>{
   self.skipWaiting();
