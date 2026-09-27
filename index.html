@@ -27,28 +27,111 @@ dialog{border:1px solid var(--gold);border-radius:16px;max-width:430px}.choice{d
  .orbit-center{width:37%}.orbit-center strong{font-size:18px}.orbit-center span{font-size:38px}.orbit-center small{font-size:8px}
  .homeNote{font-size:13px}
 }
-<style id="senior-readable-v49">
-#eventBrandBanner>div:first-child{font-size:22px!important;line-height:1.15!important}
-#eventBrandBanner>div:last-child{font-size:30px!important;line-height:1.1!important}
-.toolbar{font-size:15px!important}
-.stat{font-size:15px!important;line-height:1.2!important;min-height:78px!important;padding:12px!important}
-.stat b{font-size:27px!important}
-.orbit .orb{font-size:14px!important;line-height:1.1!important}
-.orbit-center strong{font-size:20px!important}.orbit-center span{font-size:42px!important}.orbit-center small{font-size:9px!important}
-.homeNote{font-size:15px!important;line-height:1.35!important;margin-top:14px!important}
-#orbitHome>div:not(.stats):not(.orbit),#orbitHome p{line-height:1.4}
-@media(min-width:700px){.stats{grid-template-columns:repeat(4,1fr)!important}}
-@media(max-width:600px){
- .wrap{padding:12px 8px 22px!important}
- .stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
- .orbit{width:92vw!important;max-width:430px!important;margin:24px auto 16px!important}
- .orbit .orb{font-size:13px!important}
+
+<style id="mobile-readable-final-v51">
+@media (max-width: 600px) {
+  #eventBrandBanner {
+    width: 94vw !important;
+    margin: 10px auto 14px !important;
+    padding: 18px 12px 20px !important;
+  }
+
+  #eventBrandBanner > div:first-child {
+    font-size: 22px !important;
+    line-height: 1.15 !important;
+  }
+
+  #eventBrandBanner > div:last-child {
+    font-size: 34px !important;
+    line-height: 1.05 !important;
+  }
+
+  .toolbar {
+    padding: 10px 12px !important;
+    font-size: 14px !important;
+  }
+
+  .wrap {
+    padding: 12px 10px 28px !important;
+  }
+
+  .stats {
+    width: 94vw !important;
+    margin: 0 auto 14px !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  .stat {
+    min-height: 84px !important;
+    padding: 12px 14px !important;
+    font-size: 14px !important;
+    border-radius: 12px !important;
+  }
+
+  .stat b {
+    font-size: 28px !important;
+    line-height: 1 !important;
+  }
+
+  .orbit {
+    width: 96vw !important;
+    max-width: 460px !important;
+    margin: 20px auto 16px !important;
+  }
+
+  .orbit .orb {
+    width: 25% !important;
+    font-size: 13px !important;
+    line-height: 1.1 !important;
+    padding: 8px !important;
+  }
+
+  .orbit-center {
+    width: 38% !important;
+  }
+
+  .orbit-center strong {
+    font-size: 20px !important;
+    line-height: 1.05 !important;
+  }
+
+  .orbit-center span {
+    font-size: 42px !important;
+  }
+
+  .orbit-center small {
+    font-size: 9px !important;
+  }
+
+  .homeNote {
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+    margin-top: 14px !important;
+  }
+
+  .hint,
+  #notice,
+  .panel,
+  .card,
+  .person,
+  .choice,
+  p,
+  small {
+    font-size: 14px !important;
+    line-height: 1.45 !important;
+  }
+
+  .toolbar button,
+  .button,
+  button:not(.orb) {
+    min-height: 48px !important;
+    font-size: 14px !important;
+  }
 }
-<style id="orbit-position-repair-v50">
-@media(max-width:600px){
- .orbit .orb{width:25%!important;font-size:13px!important;line-height:1.08!important;padding:7px!important}
-}
-</style></head><body data-build="50">
+</style>
+</head><body data-build="51">
 <div aria-label="GET TOGETHER 2027" id="eventBrandBanner" style="display:block;background:#fffef9;color:#145b31;border:2px solid #e4b51f;border-radius:14px;width:calc(100% - 20px);max-width:900px;margin:10px auto 12px;padding:15px 10px 17px;text-align:center;box-sizing:border-box"><div style="font-family:Georgia,'Times New Roman',serif;font-size:18px;line-height:1.1;letter-spacing:.02em;color:#145b31">PARKINSON’S DISEASE<br><strong>WARRIORS PHILIPPINES</strong></div><div style="position:relative;width:72%;height:1px;background:#e4b51f;margin:10px auto"><span style="position:absolute;width:10px;height:10px;border-radius:50%;background:#e4b51f;left:50%;top:50%;transform:translate(-50%,-50%)"></span></div><div style="font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:700;line-height:1;color:#145b31">GET TOGETHER <span style="color:#ef3217">2027</span></div></div>
 <div class="toolbar"><span id="connection"></span><button id="chooseStation" class="secondary"><span id="stationLabel">Choose station</span> ▾</button></div>
 <main class="wrap"><div id="notice" role="status" hidden></div><div id="orbitHome"><div class="stats" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:94%;margin:0 auto"><div class="stat"><b id="total">0</b>Participants</div><div class="stat"><b id="reg">0</b>Attendance</div><div class="stat"><b id="snack">0</b>Snacks claimed</div><div class="stat"><b id="lunch">0</b>Lunches claimed</div></div>
