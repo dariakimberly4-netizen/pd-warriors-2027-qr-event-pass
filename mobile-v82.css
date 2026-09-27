@@ -1,0 +1,224 @@
+
+:root{--green:#064b32;--red:#ae1022;--gold:#bd9236;--ivory:#fcfaf2;--ink:#173c2e}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;max-width:100%;background:var(--ivory);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;overflow-x:hidden}
+body{min-height:100dvh}
+.toolbar{position:sticky;top:0;z-index:30;min-height:52px;padding:8px 12px;background:var(--green);color:white;border-bottom:3px solid var(--gold);display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px}
+.toolbar button{border:1px solid var(--gold);border-radius:9px;background:#fff;color:var(--green);padding:8px 10px;font-weight:800;font-size:12px}
+.wrap{width:100%;max-width:none;margin:0;padding:0}
+#notice{margin:10px 14px;padding:12px;border-left:4px solid var(--gold);background:#f1f4eb;border-radius:10px}
+#notice[hidden]{display:none}
+
+/* Home portal */
+#orbitHome[hidden]{display:none}
+#orbitHome{width:100%;height:calc(100dvh - 52px);overflow:hidden;background:var(--ivory);display:flex;align-items:center;justify-content:center}
+.stats{display:none!important}
+.poster-orbit{position:relative;flex:none;width:min(100vw,calc((100dvh - 52px)*2/3));height:auto;aspect-ratio:2/3;margin:0 auto}
+.poster-orbit>img{display:block;width:100%;height:100%;object-fit:contain}
+.poster-hotspot{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);width:22%;height:14%;border:0;border-radius:50%;padding:0;background:transparent;cursor:pointer;touch-action:manipulation}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Module shell */
+#content[hidden]{display:none}
+#content{width:100%;min-height:calc(100dvh - 52px);margin:0;padding:16px 16px 24px;background:#fffdf8;border:0;border-radius:0;box-shadow:none}
+#back{display:inline-flex;align-items:center;min-height:40px;padding:4px 0 8px;background:transparent;border:0;color:#365744;font-size:14px;font-weight:700}
+.module-eyebrow{margin:5px 0 5px;font-size:11px;line-height:1.3;letter-spacing:.1em;font-weight:800;text-transform:uppercase;color:#806224}
+#viewTitle{margin:0 0 8px;font-family:Georgia,serif;font-size:34px;line-height:1.06;font-weight:500;color:var(--green)}
+.module-description{margin:0 0 12px;font-size:16px;line-height:1.45;color:#52675a}
+.module-steps{display:flex;flex-direction:column;gap:6px;list-style:none;padding:10px 0;margin:0 0 12px;border-top:1px solid #e5dbc3;border-bottom:1px solid #e5dbc3;counter-reset:step}
+.module-steps li{display:flex;align-items:center;gap:8px;font-size:13px;line-height:1.35;font-weight:700;counter-increment:step}
+.module-steps li:before{content:counter(step,decimal-leading-zero);font-size:11px;color:#86621e}
+.module-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 14px}
+.module-summary div{min-width:0;min-height:78px;padding:11px 9px;background:#f3f2e9;border-radius:12px;border-left:3px solid #bc973e}
+.module-summary b{display:block;margin-bottom:6px;font-size:29px;line-height:1;color:var(--green)}
+.module-summary span{display:block;font-size:12px;line-height:1.2;color:#5c695d}
+#view{border-top:1px solid #e5dbc3;padding-top:14px}
+#view label{display:block;margin-bottom:5px;font-size:15px;line-height:1.35;font-weight:700}
+#view input:not([type=checkbox]):not([type=file]):not([type=radio]),#view select{display:block;width:100%;min-height:54px;margin:5px 0 11px;padding:13px 14px;border:1px solid #b8c6ba;border-radius:12px;background:#fff;color:var(--ink);font:inherit;font-size:16px}
+#view input[hidden],#view video[hidden],#view div[hidden]{display:none!important}
+.actions{display:grid;grid-template-columns:1fr;gap:9px;margin:9px 0 13px}
+#view button,#view .button,#stationDialog button{display:flex;align-items:center;justify-content:center;width:100%;min-height:50px;margin:0;padding:11px 13px;border:1px solid var(--green);border-radius:12px;background:var(--green);color:#fff;text-decoration:none;text-align:center;font-size:14px;font-weight:800;line-height:1.25}
+#view .secondary{background:#fffdf8;color:var(--green);border-color:#c6b477}
+#results{display:grid;gap:9px;margin-top:0}
+.person{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px;border:1px solid #e2e5da;border-radius:13px;background:#fff}
+.person span{min-width:0;overflow-wrap:anywhere}.person strong{font-size:16px}.person small{font-size:13px;color:#68756b}
+#results .person button{width:auto;min-width:82px;flex:none;background:#edf3ec;color:var(--green);border:0}
+.empty-state{min-height:170px;display:grid;place-content:center;margin:0;padding:26px 16px;border:1px dashed #cdbb8d;border-radius:16px;text-align:center;background:#faf8ef}
+.empty-state strong{display:block;margin-bottom:8px;font-family:Georgia,serif;font-size:24px;line-height:1.2;font-weight:500}
+.empty-state p{margin:0;font-size:14px;line-height:1.45;color:#637064}
+.hint{padding:14px 15px;border:1px solid #d8e0ca;border-left:4px solid #b89541;border-radius:12px;background:#f1f4eb}
+#walkForm{padding:0}
+#walkForm input[type=checkbox]{width:22px;height:22px;vertical-align:middle}
+#companionFields{border-left:3px solid #c5a04d;padding-left:14px}
+#video{display:block;width:100%;max-height:45dvh;object-fit:cover;margin:12px auto;border-radius:14px;background:#123c2b}
+.bigCount{font-size:64px;font-family:Georgia,serif;text-align:center;color:var(--red)}
+.pass{max-width:100%;margin:10px auto;padding:18px 14px;border:1px solid #c9a44b;border-top:7px solid var(--green);border-radius:16px;background:#fffef9;text-align:center;overflow-wrap:anywhere}
+.pass h2{font-family:Georgia,serif;font-size:28px;color:var(--green)}
+.pass h3{font-size:22px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}.chip{padding:7px 9px;border-radius:999px;background:#eef2e7;font-size:10px;font-weight:800}
+.reportGrid{display:grid;grid-template-columns:1fr;gap:12px;margin:12px 0}.reportGrid>div{padding:16px;border:1px solid #ded8c4;border-radius:16px;background:#fff}
+.reportGrid h3{margin:0 0 10px;font-family:Georgia,serif;font-size:23px;font-weight:500}
+#stationDialog{width:min(440px,calc(100% - 24px));padding:22px;border:1px solid var(--gold);border-top:6px solid var(--green);border-radius:18px;background:#fffdf6}
+#stationDialog .choice{display:block;padding:14px;margin:8px 0;background:#f1f3e9;border-radius:10px}
+#stationDialog h2{font-family:Georgia,serif;font-size:26px}
+
+
+/* BUILD 78 — home poster resized only. Module screens remain unchanged. */
+#orbitHome{
+  height:auto;
+  min-height:calc(100dvh - 52px);
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  overflow:auto;
+  padding:0;
+  background:var(--ivory);
+}
+.poster-orbit{
+  position:relative;
+  width:100%;
+  max-width:100%;
+  height:auto;
+  aspect-ratio:2/3;
+  margin:0 auto;
+}
+.poster-orbit>img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+.poster-hotspot{
+  width:21%;
+  height:14%;
+}
+
+
+/* BUILD 79 — remove white gap below home poster only; module screens unchanged. */
+body:has(#orbitHome:not([hidden])){background:var(--green)!important}
+body:has(#orbitHome:not([hidden]))>.wrap{background:var(--green)!important}
+#orbitHome{
+  min-height:0!important;
+  height:auto!important;
+  background:var(--green)!important;
+}
+.poster-orbit{
+  margin:0 auto!important;
+  background:var(--green)!important;
+}
+
+
+/* BUILD 81 — home poster fills the entire available phone screen.
+   Module screens are untouched. */
+body:has(#orbitHome:not([hidden])){
+  height:100dvh!important;
+  overflow:hidden!important;
+  background:var(--green)!important;
+}
+body:has(#orbitHome:not([hidden]))>.wrap{
+  height:calc(100dvh - 52px)!important;
+  overflow:hidden!important;
+  background:var(--green)!important;
+}
+#orbitHome{
+  width:100%!important;
+  height:calc(100dvh - 52px)!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  background:var(--green)!important;
+  display:block!important;
+}
+#orbitHome .poster-orbit{
+  position:relative!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  aspect-ratio:auto!important;
+  margin:0!important;
+  padding:0!important;
+  background:var(--green)!important;
+}
+#orbitHome .poster-orbit>img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  object-fit:fill!important;
+}
+#orbitHome .poster-hotspot{
+  width:21%!important;
+  height:14%!important;
+}
+
+
+/* BUILD 82 — hard-lock home poster to the visible browser viewport.
+   Module screens remain unchanged. */
+body:has(#orbitHome:not([hidden])){
+  margin:0!important;
+  width:100vw!important;
+  height:100dvh!important;
+  min-height:100dvh!important;
+  overflow:hidden!important;
+  background:var(--green)!important;
+}
+body:has(#orbitHome:not([hidden]))>.toolbar{
+  position:fixed!important;
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  height:52px!important;
+  min-height:52px!important;
+  z-index:100!important;
+}
+body:has(#orbitHome:not([hidden]))>.wrap{
+  position:fixed!important;
+  top:52px!important;
+  left:0!important;
+  right:0!important;
+  bottom:0!important;
+  width:100vw!important;
+  height:auto!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  background:var(--green)!important;
+}
+#orbitHome{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  background:var(--green)!important;
+}
+#orbitHome .poster-orbit{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  aspect-ratio:auto!important;
+  margin:0!important;
+  padding:0!important;
+}
+#orbitHome .poster-orbit>img{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  object-fit:fill!important;
+}
+#orbitHome .poster-hotspot{
+  width:21%!important;
+  height:14%!important;
+}
