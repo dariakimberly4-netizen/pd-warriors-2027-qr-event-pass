@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><title>PD Warriors 2027 QR Event Pass</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><title>PD Warriors 2027 QR Event Pass</title>
 <style>
 :root{--green:#145b31;--red:#ef3217;--gold:#e4b51f;--ivory:#fffef9}
 *{box-sizing:border-box}
@@ -59,7 +59,7 @@ body:has(#orbitHome:not([hidden]))>.wrap{max-width:none;width:100%;margin:0;padd
 #orbitHome .poster-orbit{width:100%;height:100%;aspect-ratio:auto;margin:0}
 #orbitHome .poster-orbit>img{width:100%;height:100%;object-fit:fill}
 #orbitHome .poster-hotspot{width:21%;height:14%;aspect-ratio:auto}
-</style><link rel="stylesheet" href="modules-v73.css?v=75"><style id="fit-poster-no-zoom">
+</style><link rel="stylesheet" href="modules-v73.css?v=76"><style id="fit-poster-no-zoom">
 /* BUILD 65 — always show the complete portal artwork without zooming or cropping. */
 body:has(#orbitHome:not([hidden])){
   min-height:100vh;
@@ -709,10 +709,218 @@ html.phone-ui .empty-state p{
   font-size:14px!important;
   line-height:1.4!important;
 }
-</style></head><body data-build="75">
+</style><script id="mobile-viewport-fix-v76">
+(function(){
+  function isPhone(){
+    var ua=navigator.userAgent||'';
+    return /Android|iPhone|iPod|Mobile/i.test(ua) ||
+      !!(navigator.userAgentData&&navigator.userAgentData.mobile);
+  }
+  function applyPhoneViewport(){
+    var root=document.documentElement;
+    var body=document.body;
+    if(!body||!isPhone()) return;
+
+    root.classList.add('true-phone');
+
+    /* Some Android browsers open GitHub Pages in a desktop-width viewport
+       (about 980 CSS px). Counteract that automatically so the user never
+       has to pinch-zoom. */
+    var w=window.innerWidth||document.documentElement.clientWidth||430;
+    var h=window.innerHeight||document.documentElement.clientHeight||800;
+
+    if(w>720){
+      var target=Math.min(440, Math.max(390, (screen&&screen.width&&screen.width<700)?screen.width:430));
+      var scale=w/target;
+      root.classList.add('phone-desktop-viewport');
+      root.style.setProperty('--phone-target-width',target+'px');
+      root.style.setProperty('--phone-target-height',(h/scale)+'px');
+      body.style.width=target+'px';
+      body.style.maxWidth=target+'px';
+      body.style.minWidth=target+'px';
+      body.style.zoom=String(scale);
+    }else{
+      root.classList.remove('phone-desktop-viewport');
+      root.style.removeProperty('--phone-target-width');
+      root.style.removeProperty('--phone-target-height');
+      body.style.removeProperty('width');
+      body.style.removeProperty('max-width');
+      body.style.removeProperty('min-width');
+      body.style.removeProperty('zoom');
+    }
+  }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',applyPhoneViewport,{once:true});
+  }else{
+    applyPhoneViewport();
+  }
+  window.addEventListener('orientationchange',function(){setTimeout(applyPhoneViewport,150)});
+  window.addEventListener('resize',function(){clearTimeout(window.__pdwResize);window.__pdwResize=setTimeout(applyPhoneViewport,120)});
+})();
+</script><style id="mobile-layout-v76">
+/* Final phone-first module layout. Designed to be readable without pinch zoom. */
+html.true-phone body:has(#content:not([hidden])){
+  margin:0!important;
+  width:100%!important;
+  max-width:100%!important;
+  background:#fffdf8!important;
+  color:#173c2e!important;
+  overflow-x:hidden!important;
+}
+html.true-phone body:has(#content:not([hidden]))>.toolbar{
+  position:sticky!important;
+  top:0!important;
+  z-index:50!important;
+  min-height:52px!important;
+  padding:8px 12px!important;
+  font-size:13px!important;
+}
+html.true-phone body:has(#content:not([hidden]))>.wrap{
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:visible!important;
+}
+html.true-phone #content:not([hidden]){
+  width:100%!important;
+  max-width:none!important;
+  min-height:calc(100dvh - 52px)!important;
+  height:auto!important;
+  margin:0!important;
+  padding:16px!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  background:#fffdf8!important;
+  overflow:visible!important;
+}
+html.true-phone #content #back{
+  min-height:40px!important;
+  padding:3px 0 7px!important;
+  font-size:14px!important;
+}
+html.true-phone .module-eyebrow{
+  margin:5px 0!important;
+  font-size:11px!important;
+  line-height:1.35!important;
+  letter-spacing:.1em!important;
+}
+html.true-phone #viewTitle{
+  margin:0 0 8px!important;
+  font-size:34px!important;
+  line-height:1.06!important;
+}
+html.true-phone .module-description{
+  max-width:none!important;
+  margin:0 0 12px!important;
+  font-size:16px!important;
+  line-height:1.45!important;
+}
+html.true-phone .module-steps{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:5px!important;
+  margin:0 0 12px!important;
+  padding:10px 0!important;
+}
+html.true-phone .module-steps li{
+  justify-content:flex-start!important;
+  text-align:left!important;
+  font-size:13px!important;
+  line-height:1.35!important;
+  gap:8px!important;
+}
+html.true-phone .module-steps li:before{font-size:11px!important}
+html.true-phone .module-summary{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:8px!important;
+  margin:0 0 14px!important;
+}
+html.true-phone .module-summary div{
+  min-width:0!important;
+  min-height:78px!important;
+  padding:11px 9px!important;
+}
+html.true-phone .module-summary b{
+  display:block!important;
+  margin-bottom:6px!important;
+  font-size:29px!important;
+  line-height:1!important;
+}
+html.true-phone .module-summary span{
+  display:block!important;
+  font-size:12px!important;
+  line-height:1.2!important;
+}
+html.true-phone #view{
+  padding-top:14px!important;
+}
+html.true-phone #view label{
+  font-size:15px!important;
+  line-height:1.35!important;
+  margin-bottom:5px!important;
+}
+html.true-phone #view input:not([type=checkbox]):not([type=file]):not([type=radio]),
+html.true-phone #view select{
+  width:100%!important;
+  min-height:54px!important;
+  margin:5px 0 11px!important;
+  padding:13px 14px!important;
+  font-size:16px!important;
+}
+html.true-phone #view .actions{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:9px!important;
+  margin:9px 0 13px!important;
+}
+html.true-phone #view .actions>*,
+html.true-phone #view button,
+html.true-phone #view .button{
+  width:100%!important;
+  min-width:0!important;
+  min-height:50px!important;
+  margin:0!important;
+  padding:11px 13px!important;
+  font-size:14px!important;
+  line-height:1.25!important;
+}
+html.true-phone #results{
+  margin-top:0!important;
+}
+html.true-phone .empty-state{
+  min-height:170px!important;
+  display:grid!important;
+  place-content:center!important;
+  margin:0!important;
+  padding:26px 16px!important;
+}
+html.true-phone .empty-state strong{
+  margin-bottom:8px!important;
+  font-size:24px!important;
+  line-height:1.2!important;
+}
+html.true-phone .empty-state p{
+  font-size:14px!important;
+  line-height:1.45!important;
+}
+html.true-phone #results .person{padding:13px!important}
+html.true-phone #results .person strong{font-size:16px!important}
+html.true-phone #results .person small{font-size:13px!important}
+
+/* When Android forces a desktop-width viewport, use the corrected logical height. */
+html.phone-desktop-viewport body:has(#content:not([hidden])){
+  min-height:var(--phone-target-height)!important;
+}
+html.phone-desktop-viewport #content:not([hidden]){
+  min-height:calc(var(--phone-target-height) - 52px)!important;
+}
+</style></head><body data-build="76">
 <div class="toolbar"><span id="connection"></span><button id="chooseStation" class="secondary"><span id="stationLabel">Choose station</span> ▾</button></div>
 <main class="wrap"><div id="notice" role="status" hidden></div><div id="orbitHome"><div class="stats"><div class="stat"><b id="total">0</b>Participants</div><div class="stat"><b id="reg">0</b>Attendance</div><div class="stat"><b id="snack">0</b>Snacks claimed</div><div class="stat"><b id="lunch">0</b>Lunches claimed</div></div>
 <nav class="poster-orbit" aria-label="Event modules"><img src="assets/event-portal.jpg?v=69" width="1024" height="1536" alt="Parkinson’s Disease Warriors Philippines — Get Together 2027 event portal. One QR for attendance, snack, lunch and raffle." fetchpriority="high"><button type="button" class="poster-hotspot" data-module="registration" aria-label="Attendance" title="Attendance" style="--x:49.90234%;--y:28.71094%"><span class="sr-only">Attendance</span></button><button type="button" class="poster-hotspot" data-module="walkin" aria-label="Walk-in" title="Walk-in" style="--x:75.00000%;--y:35.28646%"><span class="sr-only">Walk-in</span></button><button type="button" class="poster-hotspot" data-module="snack" aria-label="Snack" title="Snack" style="--x:85.93750%;--y:50.78125%"><span class="sr-only">Snack</span></button><button type="button" class="poster-hotspot" data-module="lunch" aria-label="Lunch" title="Lunch" style="--x:75.48828%;--y:66.53646%"><span class="sr-only">Lunch</span></button><button type="button" class="poster-hotspot" data-module="raffle" aria-label="Raffle" title="Raffle" style="--x:49.90234%;--y:73.82812%"><span class="sr-only">Raffle</span></button><button type="button" class="poster-hotspot" data-module="scan" aria-label="QR scan" title="QR scan" style="--x:24.12109%;--y:66.60156%"><span class="sr-only">QR scan</span></button><button type="button" class="poster-hotspot" data-module="attendees" aria-label="Roster" title="Roster" style="--x:13.76953%;--y:50.78125%"><span class="sr-only">Roster</span></button><button type="button" class="poster-hotspot" data-module="report" aria-label="Reports & setup" title="Reports & setup" style="--x:24.41406%;--y:35.28646%"><span class="sr-only">Reports & setup</span></button></nav></div>
 <section id="content" class="panel" hidden><button id="back" class="back">← Back to orbit</button><h2 id="viewTitle"></h2><div id="view"></div></section></main>
 <dialog id="stationDialog"><form id="stationForm"><p class="eyebrow">STAFF WORKSPACE</p><h2>Choose this device’s station</h2><p>Use one device for each station throughout the event.</p><label class="choice"><input type="radio" name="station" value="registration" required> Registration & raffle <small>Donna / registration staff</small></label><label class="choice"><input type="radio" name="station" value="snack"> Snack claims</label><label class="choice"><input type="radio" name="station" value="lunch"> Lunch claims</label><button>Open station</button><p class="small">Station selection is a workflow setting, not a password login. Keep staff devices with authorized staff.</p></form></dialog>
-<script src="vendor/qrcode.js"></script><script src="vendor/qrcode-utf8.js"></script><script src="vendor/jsQR.js"></script><script src="app.js?v=75"></script></body></html>
+<script src="vendor/qrcode.js"></script><script src="vendor/qrcode-utf8.js"></script><script src="vendor/jsQR.js"></script><script src="app.js?v=76"></script></body></html>
