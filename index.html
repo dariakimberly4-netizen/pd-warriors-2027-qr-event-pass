@@ -59,7 +59,7 @@ body:has(#orbitHome:not([hidden]))>.wrap{max-width:none;width:100%;margin:0;padd
 #orbitHome .poster-orbit{width:100%;height:100%;aspect-ratio:auto;margin:0}
 #orbitHome .poster-orbit>img{width:100%;height:100%;object-fit:fill}
 #orbitHome .poster-hotspot{width:21%;height:14%;aspect-ratio:auto}
-</style><link rel="stylesheet" href="modules-v73.css?v=73"><style id="fit-poster-no-zoom">
+</style><link rel="stylesheet" href="modules-v73.css?v=74"><style id="fit-poster-no-zoom">
 /* BUILD 65 — always show the complete portal artwork without zooming or cropping. */
 body:has(#orbitHome:not([hidden])){
   min-height:100vh;
@@ -164,10 +164,189 @@ body:has(#orbitHome:not([hidden]))>.wrap{
   height:14%!important;
   aspect-ratio:auto!important;
 }
-</style></head><body data-build="73">
+</style><style id="phone-layout-v74">
+/* BUILD 74 — phone layout also works when Android browser is in Desktop site mode. */
+@media (max-width:720px), (hover:none) and (pointer:coarse){
+  body:has(#content:not([hidden])){
+    width:100%!important;
+    height:100vh!important;
+    height:100dvh!important;
+    min-height:0!important;
+    margin:0!important;
+    display:grid!important;
+    grid-template-rows:52px minmax(0,1fr)!important;
+    overflow:hidden!important;
+    background:#fffdf8!important;
+    font-size:16px!important;
+  }
+  body:has(#content:not([hidden]))>.toolbar{
+    position:relative!important;
+    inset:auto!important;
+    width:100%!important;
+    min-height:52px!important;
+    margin:0!important;
+    padding:8px 12px!important;
+    font-size:13px!important;
+  }
+  body:has(#content:not([hidden]))>.wrap{
+    width:100%!important;
+    max-width:none!important;
+    height:100%!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0!important;
+    overflow:hidden!important;
+  }
+  #content:not([hidden]){
+    width:100%!important;
+    height:100%!important;
+    min-height:0!important;
+    max-height:none!important;
+    margin:0!important;
+    padding:16px!important;
+    border:0!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+    background:#fffdf8!important;
+    overflow-y:auto!important;
+    display:flex!important;
+    flex-direction:column!important;
+  }
+  #content #back{
+    flex:none!important;
+    min-height:38px!important;
+    padding:3px 0 6px!important;
+    font-size:14px!important;
+  }
+  .module-eyebrow{
+    flex:none!important;
+    margin:4px 0 5px!important;
+    font-size:11px!important;
+    line-height:1.3!important;
+    letter-spacing:.11em!important;
+  }
+  #viewTitle{
+    flex:none!important;
+    margin:0 0 8px!important;
+    font-size:34px!important;
+    line-height:1.05!important;
+  }
+  .module-description{
+    flex:none!important;
+    margin:0 0 12px!important;
+    max-width:none!important;
+    font-size:16px!important;
+    line-height:1.4!important;
+  }
+  .module-steps{
+    flex:none!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:5px!important;
+    margin:0 0 12px!important;
+    padding:9px 0!important;
+  }
+  .module-steps li{
+    justify-content:flex-start!important;
+    text-align:left!important;
+    font-size:13px!important;
+    line-height:1.3!important;
+    gap:8px!important;
+  }
+  .module-steps li:before{font-size:11px!important}
+  .module-summary{
+    flex:none!important;
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:8px!important;
+    margin:0 0 14px!important;
+  }
+  .module-summary div{
+    min-width:0!important;
+    min-height:74px!important;
+    padding:10px 9px!important;
+  }
+  .module-summary b{
+    display:block!important;
+    margin-bottom:5px!important;
+    font-size:28px!important;
+    line-height:1!important;
+  }
+  .module-summary span{
+    display:block!important;
+    font-size:12px!important;
+    line-height:1.2!important;
+    overflow-wrap:anywhere!important;
+  }
+  #view{
+    flex:1 1 auto!important;
+    min-height:0!important;
+    padding-top:12px!important;
+    display:flex!important;
+    flex-direction:column!important;
+  }
+  #view label{
+    flex:none!important;
+    margin-bottom:5px!important;
+    font-size:15px!important;
+    line-height:1.35!important;
+  }
+  #view input:not([type=checkbox]):not([type=file]):not([type=radio]),
+  #view select{
+    flex:none!important;
+    width:100%!important;
+    min-height:52px!important;
+    margin:5px 0 10px!important;
+    padding:12px 14px!important;
+    font-size:16px!important;
+  }
+  #view .actions{
+    flex:none!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:9px!important;
+    margin:8px 0 12px!important;
+  }
+  #view .actions>*,
+  #view button,
+  #view .button{
+    width:100%!important;
+    min-width:0!important;
+    min-height:50px!important;
+    margin:0!important;
+    padding:11px 13px!important;
+    font-size:14px!important;
+    line-height:1.25!important;
+  }
+  #results{
+    flex:1 1 auto!important;
+    min-height:160px!important;
+    margin-top:0!important;
+    display:flex!important;
+    flex-direction:column!important;
+  }
+  .empty-state{
+    flex:1 1 auto!important;
+    min-height:160px!important;
+    margin:0!important;
+    padding:24px 16px!important;
+    display:grid!important;
+    place-content:center!important;
+  }
+  .empty-state strong{
+    margin-bottom:8px!important;
+    font-size:24px!important;
+    line-height:1.2!important;
+  }
+  .empty-state p{
+    font-size:14px!important;
+    line-height:1.4!important;
+  }
+}
+</style></head><body data-build="74">
 <div class="toolbar"><span id="connection"></span><button id="chooseStation" class="secondary"><span id="stationLabel">Choose station</span> ▾</button></div>
 <main class="wrap"><div id="notice" role="status" hidden></div><div id="orbitHome"><div class="stats"><div class="stat"><b id="total">0</b>Participants</div><div class="stat"><b id="reg">0</b>Attendance</div><div class="stat"><b id="snack">0</b>Snacks claimed</div><div class="stat"><b id="lunch">0</b>Lunches claimed</div></div>
 <nav class="poster-orbit" aria-label="Event modules"><img src="assets/event-portal.jpg?v=69" width="1024" height="1536" alt="Parkinson’s Disease Warriors Philippines — Get Together 2027 event portal. One QR for attendance, snack, lunch and raffle." fetchpriority="high"><button type="button" class="poster-hotspot" data-module="registration" aria-label="Attendance" title="Attendance" style="--x:49.90234%;--y:28.71094%"><span class="sr-only">Attendance</span></button><button type="button" class="poster-hotspot" data-module="walkin" aria-label="Walk-in" title="Walk-in" style="--x:75.00000%;--y:35.28646%"><span class="sr-only">Walk-in</span></button><button type="button" class="poster-hotspot" data-module="snack" aria-label="Snack" title="Snack" style="--x:85.93750%;--y:50.78125%"><span class="sr-only">Snack</span></button><button type="button" class="poster-hotspot" data-module="lunch" aria-label="Lunch" title="Lunch" style="--x:75.48828%;--y:66.53646%"><span class="sr-only">Lunch</span></button><button type="button" class="poster-hotspot" data-module="raffle" aria-label="Raffle" title="Raffle" style="--x:49.90234%;--y:73.82812%"><span class="sr-only">Raffle</span></button><button type="button" class="poster-hotspot" data-module="scan" aria-label="QR scan" title="QR scan" style="--x:24.12109%;--y:66.60156%"><span class="sr-only">QR scan</span></button><button type="button" class="poster-hotspot" data-module="attendees" aria-label="Roster" title="Roster" style="--x:13.76953%;--y:50.78125%"><span class="sr-only">Roster</span></button><button type="button" class="poster-hotspot" data-module="report" aria-label="Reports & setup" title="Reports & setup" style="--x:24.41406%;--y:35.28646%"><span class="sr-only">Reports & setup</span></button></nav></div>
 <section id="content" class="panel" hidden><button id="back" class="back">← Back to orbit</button><h2 id="viewTitle"></h2><div id="view"></div></section></main>
 <dialog id="stationDialog"><form id="stationForm"><p class="eyebrow">STAFF WORKSPACE</p><h2>Choose this device’s station</h2><p>Use one device for each station throughout the event.</p><label class="choice"><input type="radio" name="station" value="registration" required> Registration & raffle <small>Donna / registration staff</small></label><label class="choice"><input type="radio" name="station" value="snack"> Snack claims</label><label class="choice"><input type="radio" name="station" value="lunch"> Lunch claims</label><button>Open station</button><p class="small">Station selection is a workflow setting, not a password login. Keep staff devices with authorized staff.</p></form></dialog>
-<script src="vendor/qrcode.js"></script><script src="vendor/qrcode-utf8.js"></script><script src="vendor/jsQR.js"></script><script src="app.js?v=72"></script></body></html>
+<script src="vendor/qrcode.js"></script><script src="vendor/qrcode-utf8.js"></script><script src="vendor/jsQR.js"></script><script src="app.js?v=74"></script></body></html>
