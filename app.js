@@ -52,7 +52,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('./sw.js').then
 if(SAMPLE_MODE)localStorage.setItem('pdw27-sample-feature-seen','1');
 const groupBanner=document.createElement('div');groupBanner.className='hint';groupBanner.style.maxWidth='1064px';groupBanner.style.margin='12px auto';
 groupBanner.innerHTML=SAMPLE_MODE?'<strong>SAMPLE ROSTER · 100 PEOPLE</strong><p>50 participants + 50 companions. Each pair is numbered 01–50. Each person has one QR. Participants: attendance + snack + lunch + raffle. Companions: attendance + snack + lunch only.</p><a class="button" href="?v=group7">Return to event records</a>':'<a class="button" href="?sample=50&v=group7">NEW · Open 50 participants + companions</a><p>100 clearly labeled sample records in a separate workspace.</p>';
-document.querySelector('.toolbar').after(groupBanner);
+document.querySelector('main').after(groupBanner);
 
 if(!SAMPLE_MODE&&localStorage.getItem('pdw27-sample-feature-seen'))groupBanner.querySelector('a').textContent='Open 50 participants + companions';
 
