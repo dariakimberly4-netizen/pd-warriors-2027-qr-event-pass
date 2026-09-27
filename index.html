@@ -59,7 +59,7 @@ body:has(#orbitHome:not([hidden]))>.wrap{max-width:none;width:100%;margin:0;padd
 #orbitHome .poster-orbit{width:100%;height:100%;aspect-ratio:auto;margin:0}
 #orbitHome .poster-orbit>img{width:100%;height:100%;object-fit:fill}
 #orbitHome .poster-hotspot{width:21%;height:14%;aspect-ratio:auto}
-</style><link rel="stylesheet" href="modules.css?v=67"><style id="fit-poster-no-zoom">
+</style><link rel="stylesheet" href="modules.css?v=68"><style id="fit-poster-no-zoom">
 /* BUILD 65 — always show the complete portal artwork without zooming or cropping. */
 body:has(#orbitHome:not([hidden])){
   min-height:100vh;
@@ -113,7 +113,58 @@ body:has(#orbitHome:not([hidden]))>.wrap{
     aspect-ratio:2/3;
   }
 }
-</style></head><body data-build="67">
+</style><style id="full-screen-poster-build-68">
+/* BUILD 68 — fill the entire visible app screen with the portal artwork.
+   No blank bands, no manual zoom. Hotspots remain aligned by percentage. */
+body:has(#orbitHome:not([hidden])){
+  width:100vw!important;
+  height:100vh!important;
+  height:100dvh!important;
+  min-height:0!important;
+  margin:0!important;
+  overflow:hidden!important;
+}
+body:has(#orbitHome:not([hidden]))>.wrap{
+  position:fixed!important;
+  inset:0!important;
+  width:100vw!important;
+  height:100vh!important;
+  height:100dvh!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+}
+#orbitHome:not([hidden]){
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  display:block!important;
+  overflow:hidden!important;
+}
+#orbitHome .poster-orbit{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  aspect-ratio:auto!important;
+}
+#orbitHome .poster-orbit>img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  object-fit:fill!important;
+}
+#orbitHome .poster-hotspot{
+  position:absolute!important;
+  width:21%!important;
+  height:14%!important;
+  aspect-ratio:auto!important;
+}
+</style></head><body data-build="68">
 <div class="toolbar"><span id="connection"></span><button id="chooseStation" class="secondary"><span id="stationLabel">Choose station</span> ▾</button></div>
 <main class="wrap"><div id="notice" role="status" hidden></div><div id="orbitHome"><div class="stats"><div class="stat"><b id="total">0</b>Participants</div><div class="stat"><b id="reg">0</b>Attendance</div><div class="stat"><b id="snack">0</b>Snacks claimed</div><div class="stat"><b id="lunch">0</b>Lunches claimed</div></div>
 <nav class="poster-orbit" aria-label="Event modules"><img src="assets/event-portal.jpg" width="1024" height="1536" alt="Parkinson’s Disease Warriors Philippines — Get Together 2027 event portal. One QR for attendance, snack, lunch and raffle." fetchpriority="high"><button type="button" class="poster-hotspot" data-module="registration" aria-label="Attendance" title="Attendance" style="--x:49.90234%;--y:28.71094%"><span class="sr-only">Attendance</span></button><button type="button" class="poster-hotspot" data-module="walkin" aria-label="Walk-in" title="Walk-in" style="--x:75.00000%;--y:35.28646%"><span class="sr-only">Walk-in</span></button><button type="button" class="poster-hotspot" data-module="snack" aria-label="Snack" title="Snack" style="--x:85.93750%;--y:50.78125%"><span class="sr-only">Snack</span></button><button type="button" class="poster-hotspot" data-module="lunch" aria-label="Lunch" title="Lunch" style="--x:75.48828%;--y:66.53646%"><span class="sr-only">Lunch</span></button><button type="button" class="poster-hotspot" data-module="raffle" aria-label="Raffle" title="Raffle" style="--x:49.90234%;--y:73.82812%"><span class="sr-only">Raffle</span></button><button type="button" class="poster-hotspot" data-module="scan" aria-label="QR scan" title="QR scan" style="--x:24.12109%;--y:66.60156%"><span class="sr-only">QR scan</span></button><button type="button" class="poster-hotspot" data-module="attendees" aria-label="Roster" title="Roster" style="--x:13.76953%;--y:50.78125%"><span class="sr-only">Roster</span></button><button type="button" class="poster-hotspot" data-module="report" aria-label="Reports & setup" title="Reports & setup" style="--x:24.41406%;--y:35.28646%"><span class="sr-only">Reports & setup</span></button></nav></div>
