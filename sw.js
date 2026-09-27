@@ -1,5 +1,5 @@
-const CACHE='pdw27-offline-v99';
-const ASSETS=['https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js','./','./index.html','./mobile.html','./responsive-v99.css?v=99','./app.js?v=99','./modules-v73.css?v=77','./assets/event-portal.jpg?v=99','./vendor/qrcode.js','./vendor/qrcode-utf8.js','./vendor/jsQR.js'];
+const CACHE='pdw27-offline-v100';
+const ASSETS=['https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js','./','./index.html','./mobile.html','./responsive-v100.css?v=100','./app.js?v=100','./modules-v73.css?v=77','./assets/event-portal.jpg?v=100','./vendor/qrcode.js','./vendor/qrcode-utf8.js','./vendor/jsQR.js'];
 
 self.addEventListener('install',e=>{
   self.skipWaiting();
