@@ -45,12 +45,14 @@ function connectivity(){$('connection').textContent=navigator.onLine?'Connection
 if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
 
 if(SAMPLE_MODE)localStorage.setItem('pdw27-sample-feature-seen','1');
-// New-feature highlight: walk-in participant + companion pairing. Clears after first open.
-const PAIR_HIGHLIGHT='pdw27-pairing-seen-v2';
-const walkBtn=document.querySelector('[data-module="walkin"]');
-if(walkBtn&&!localStorage.getItem(PAIR_HIGHLIGHT)){walkBtn.classList.add('new');const old=walkBtn.onclick;walkBtn.onclick=(e)=>{localStorage.setItem(PAIR_HIGHLIGHT,'1');walkBtn.classList.remove('new');if(old)old.call(walkBtn,e)}}
 const groupBanner=document.createElement('div');groupBanner.className='hint';groupBanner.style.maxWidth='1064px';groupBanner.style.margin='12px auto';
 groupBanner.innerHTML=SAMPLE_MODE?'<strong>SAMPLE ROSTER · 100 PEOPLE</strong><p>50 participants + 50 companions. Each pair is numbered 01–50. Each person has one QR. Participants: attendance + snack + lunch + raffle. Companions: attendance + snack + lunch only.</p><a class="button" href="?v=group7">Return to event records</a>':'<a class="button" href="?sample=50&v=group7">NEW · Open 50 participants + companions</a><p>100 clearly labeled sample records in a separate workspace.</p>';
 document.querySelector('.toolbar').after(groupBanner);
 
 if(!SAMPLE_MODE&&localStorage.getItem('pdw27-sample-feature-seen'))groupBanner.querySelector('a').textContent='Open 50 participants + companions';
+
+// Release highlight: only modules changed in the latest update. Each clears on first click.
+const RELEASE_HIGHLIGHTS='pdw27-release-highlights-v13';
+const newModules=['registration','report'];
+let releaseSeen=JSON.parse(localStorage.getItem(RELEASE_HIGHLIGHTS)||'[]');
+for(const id of newModules){const b=document.querySelector('[data-module="'+id+'"]');if(b&&!releaseSeen.includes(id)){b.classList.add('new');const prior=b.onclick;b.onclick=(e)=>{releaseSeen=JSON.parse(localStorage.getItem(RELEASE_HIGHLIGHTS)||'[]');if(!releaseSeen.includes(id)){releaseSeen.push(id);localStorage.setItem(RELEASE_HIGHLIGHTS,JSON.stringify(releaseSeen))}b.classList.remove('new');if(prior)prior.call(b,e)}}}
