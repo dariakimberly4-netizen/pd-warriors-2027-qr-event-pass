@@ -106,3 +106,50 @@ body:has(#orbitHome:not([hidden]))>.wrap{background:var(--green)!important}
   margin:0 auto!important;
   background:var(--green)!important;
 }
+
+
+/* BUILD 81 — home poster fills the entire available phone screen.
+   Module screens are untouched. */
+body:has(#orbitHome:not([hidden])){
+  height:100dvh!important;
+  overflow:hidden!important;
+  background:var(--green)!important;
+}
+body:has(#orbitHome:not([hidden]))>.wrap{
+  height:calc(100dvh - 52px)!important;
+  overflow:hidden!important;
+  background:var(--green)!important;
+}
+#orbitHome{
+  width:100%!important;
+  height:calc(100dvh - 52px)!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  background:var(--green)!important;
+  display:block!important;
+}
+#orbitHome .poster-orbit{
+  position:relative!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  aspect-ratio:auto!important;
+  margin:0!important;
+  padding:0!important;
+  background:var(--green)!important;
+}
+#orbitHome .poster-orbit>img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  object-fit:fill!important;
+}
+#orbitHome .poster-hotspot{
+  width:21%!important;
+  height:14%!important;
+}
