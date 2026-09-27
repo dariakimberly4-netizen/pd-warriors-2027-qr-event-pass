@@ -46,7 +46,7 @@ function setup(){stopCamera();$('stationDialog').showModal()}
 $('chooseStation').onclick=setup;$('stationForm').onsubmit=e=>{e.preventDefault();const val=new FormData(e.target).get('station');if(!['registration','snack','lunch'].includes(val))return;station=val;localStorage.setItem('pdw27station',val);$('stationDialog').close();stats();home()};$('back').onclick=home;
 for(const b of document.querySelectorAll('[data-module]')){b.classList.remove('new');b.onclick=()=>show(b.dataset.module)}
 window.addEventListener('storage',e=>{if(e.key===KEY){people=read();stats();if($('results'))renderSearch();if(selected&&$('detail'))openPerson(selected)}});
-function connectivity(){$('connection').textContent=navigator.onLine?'Connection available':'Offline · records stay on this device'}window.addEventListener('online',connectivity);window.addEventListener('offline',connectivity);connectivity();stats();if(!station)setup();
+function connectivity(){$('connection').textContent=navigator.onLine?'Connection available':'Offline · records stay on this device'}window.addEventListener('online',connectivity);window.addEventListener('offline',connectivity);connectivity();stats();
 if('serviceWorker'in navigator){navigator.serviceWorker.register('./sw.js').then(r=>r.update()).catch(()=>{});}
 
 if(SAMPLE_MODE)localStorage.setItem('pdw27-sample-feature-seen','1');
