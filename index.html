@@ -46,7 +46,14 @@ body:has(#orbitHome:not([hidden]))>.hint{width:100%;max-width:1024px!important;m
 body:has(#orbitHome:not([hidden]))>.hint p{display:none}
 body:has(#orbitHome:not([hidden]))>.hint .button{padding:6px 10px}
 body:has(#orbitHome:not([hidden]))>.hint strong{display:block;margin-bottom:3px}
-</style></head><body data-build="58">
+</style><style id="image-only-home">
+body:has(#orbitHome:not([hidden])){grid-template-rows:minmax(0,1fr)}
+body:has(#orbitHome:not([hidden]))>.toolbar,
+body:has(#orbitHome:not([hidden]))>.hint{display:none!important}
+body:has(#orbitHome:not([hidden]))>.wrap{grid-row:1}
+.poster-orbit{width:min(100%,calc(100vh*2/3));width:min(100%,calc(100dvh*2/3))}
+@supports(width:1cqh){.poster-orbit{width:min(100cqw,calc(100cqh*2/3))}}
+</style></head><body data-build="59">
 <div class="toolbar"><span id="connection"></span><button id="chooseStation" class="secondary"><span id="stationLabel">Choose station</span> ▾</button></div>
 <main class="wrap"><div id="notice" role="status" hidden></div><div id="orbitHome"><div class="stats"><div class="stat"><b id="total">0</b>Participants</div><div class="stat"><b id="reg">0</b>Attendance</div><div class="stat"><b id="snack">0</b>Snacks claimed</div><div class="stat"><b id="lunch">0</b>Lunches claimed</div></div>
 <nav class="poster-orbit" aria-label="Event modules"><img src="assets/event-portal.jpg" width="1024" height="1536" alt="Parkinson’s Disease Warriors Philippines — Get Together 2027 event portal. One QR for attendance, snack, lunch and raffle." fetchpriority="high"><button type="button" class="poster-hotspot" data-module="registration" aria-label="Attendance" title="Attendance" style="--x:49.90234%;--y:28.71094%"><span class="sr-only">Attendance</span></button><button type="button" class="poster-hotspot" data-module="walkin" aria-label="Walk-in" title="Walk-in" style="--x:75.00000%;--y:35.28646%"><span class="sr-only">Walk-in</span></button><button type="button" class="poster-hotspot" data-module="snack" aria-label="Snack" title="Snack" style="--x:85.93750%;--y:50.78125%"><span class="sr-only">Snack</span></button><button type="button" class="poster-hotspot" data-module="lunch" aria-label="Lunch" title="Lunch" style="--x:75.48828%;--y:66.53646%"><span class="sr-only">Lunch</span></button><button type="button" class="poster-hotspot" data-module="raffle" aria-label="Raffle" title="Raffle" style="--x:49.90234%;--y:73.82812%"><span class="sr-only">Raffle</span></button><button type="button" class="poster-hotspot" data-module="scan" aria-label="QR scan" title="QR scan" style="--x:24.12109%;--y:66.60156%"><span class="sr-only">QR scan</span></button><button type="button" class="poster-hotspot" data-module="attendees" aria-label="Roster" title="Roster" style="--x:13.76953%;--y:50.78125%"><span class="sr-only">Roster</span></button><button type="button" class="poster-hotspot" data-module="report" aria-label="Reports & setup" title="Reports & setup" style="--x:24.41406%;--y:35.28646%"><span class="sr-only">Reports & setup</span></button></nav></div>
