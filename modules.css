@@ -187,3 +187,120 @@ body:has(#content:not([hidden]))>.wrap{
     margin:0 auto;
   }
 }
+
+
+/* BUILD 66 — mobile readability: full-width modules with no zoom needed. */
+@media(max-width:600px){
+  body:has(#content:not([hidden])){
+    font-size:15px;
+    overflow-y:auto;
+  }
+  body:has(#content:not([hidden]))>.toolbar{
+    min-height:42px;
+    padding:6px 10px;
+    font-size:12px;
+  }
+  body:has(#content:not([hidden]))>.wrap{
+    width:100%;
+    max-width:none;
+    padding:6px;
+  }
+  #content:not([hidden]){
+    width:100%;
+    max-width:none;
+    margin:0;
+    padding:12px 12px 14px;
+    border-radius:12px;
+    max-height:none;
+    overflow:visible;
+  }
+  #content #back{
+    min-height:32px;
+    padding:3px 0;
+    font-size:12px;
+  }
+  .module-eyebrow{
+    margin:6px 0 3px;
+    font-size:9px;
+    letter-spacing:.14em;
+  }
+  #viewTitle{
+    font-size:28px;
+    line-height:1.08;
+    margin:0 0 5px;
+  }
+  .module-description{
+    font-size:14px;
+    line-height:1.35;
+    margin:0 0 9px;
+  }
+  .module-steps{
+    gap:5px 12px;
+    padding:7px 0;
+    margin:0 0 9px;
+  }
+  .module-steps li{
+    font-size:11px;
+    gap:5px;
+  }
+  .module-steps li:before{font-size:9px}
+  .module-summary{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:6px;
+    margin:0 0 10px;
+  }
+  .module-summary div{
+    padding:9px 8px;
+    min-height:62px;
+  }
+  .module-summary b{
+    font-size:23px;
+  }
+  .module-summary span{
+    font-size:10px;
+    line-height:1.2;
+  }
+  #view{
+    padding-top:10px;
+  }
+  #view label{
+    font-size:13px;
+    margin-bottom:4px;
+  }
+  #view input:not([type=checkbox]):not([type=file]):not([type=radio]),
+  #view select{
+    min-height:46px;
+    padding:11px 12px;
+    margin:4px 0 9px;
+    font-size:16px;
+  }
+  #view button,#view .button{
+    min-height:44px;
+    padding:10px 11px;
+    font-size:12px;
+  }
+  #view .actions{
+    gap:7px;
+    margin:8px 0 10px;
+  }
+  #view .actions>*{
+    flex:1 1 calc(50% - 4px);
+  }
+  .empty-state{
+    padding:18px 12px;
+  }
+  .empty-state strong{
+    font-size:20px;
+  }
+  .empty-state p{
+    font-size:11px;
+  }
+  #results .person{
+    padding:11px 10px;
+  }
+  #view .hint,#notice{
+    padding:10px 11px;
+    margin:7px 0;
+    font-size:12px;
+  }
+}
