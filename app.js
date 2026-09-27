@@ -57,7 +57,8 @@ document.querySelector('.toolbar').after(groupBanner);
 if(!SAMPLE_MODE&&localStorage.getItem('pdw27-sample-feature-seen'))groupBanner.querySelector('a').textContent='Open 50 participants + companions';
 
 // Release highlight: only modules changed in the latest update. Each clears on first click.
-const RELEASE_HIGHLIGHTS='pdw27-release-highlights-v21';
+const RELEASE_HIGHLIGHTS='pdw27-release-highlights-v22';
 const newModules=['report'];
+for(const b of document.querySelectorAll('[data-module]'))b.classList.remove('new');
 let releaseSeen=JSON.parse(localStorage.getItem(RELEASE_HIGHLIGHTS)||'[]');
 for(const id of newModules){const b=document.querySelector('[data-module="'+id+'"]');if(b&&!releaseSeen.includes(id)){b.classList.add('new');const prior=b.onclick;b.onclick=(e)=>{releaseSeen=JSON.parse(localStorage.getItem(RELEASE_HIGHLIGHTS)||'[]');if(!releaseSeen.includes(id)){releaseSeen.push(id);localStorage.setItem(RELEASE_HIGHLIGHTS,JSON.stringify(releaseSeen))}b.classList.remove('new');if(prior)prior.call(b,e)}}}
