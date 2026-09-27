@@ -76,3 +76,86 @@ body:has(#content:not([hidden]))>.wrap{max-width:1100px;padding:24px 20px 48px}
 #stationDialog input{accent-color:var(--green)}
 #stationDialog button{width:100%;margin-top:12px}
 @media(max-width:600px){body:has(#content:not([hidden]))>.wrap{padding:12px 10px 28px}#content{padding:20px 16px;border-radius:18px;min-height:calc(100dvh - 98px)}.module-eyebrow{margin-top:18px;font-size:10px}.module-description{font-size:15px}.module-steps{gap:10px 16px}.module-steps li{font-size:11px}.module-summary{gap:7px}.module-summary div{padding:12px 8px}.module-summary b{font-size:25px}.module-summary span{font-size:10px}.reportGrid{grid-template-columns:1fr}.reportGrid>div{padding:20px}#view #walkForm{padding:18px}#view .actions>*{flex-basis:100%}#view .pass{padding:20px 14px}#view .pass h2{font-size:26px}#content[data-module=scan] #view>.actions,#content[data-module=snack] #view>.actions,#content[data-module=lunch] #view>.actions{padding:16px}}
+
+
+/* BUILD 63 — fit each module to the visible screen on phones/tablets/desktop.
+   Content uses the full viewport instead of a tall fixed card. Scroll only when
+   a module genuinely has more content than can fit. */
+body:has(#content:not([hidden])){
+  height:100vh;height:100dvh;overflow:hidden;
+  display:grid;grid-template-rows:auto minmax(0,1fr);
+}
+body:has(#content:not([hidden]))>.toolbar{
+  min-height:42px;padding-block:6px;
+}
+body:has(#content:not([hidden]))>.wrap{
+  width:100%;max-width:1100px;height:100%;min-height:0;
+  padding:8px 12px 10px;overflow:hidden;
+}
+#content:not([hidden]){
+  height:100%;min-height:0;margin:0;padding:14px 18px;
+  border-radius:16px;overflow:auto;overscroll-behavior:contain;
+}
+#content #back{min-height:30px;padding:2px 0;font-size:12px}
+.module-eyebrow{margin:6px 0 3px;font-size:9px}
+#viewTitle{font-size:clamp(24px,3.2vw,38px);margin:0 0 4px}
+.module-description{font-size:13px;line-height:1.35;margin:0 0 8px}
+.module-steps{gap:4px 16px;padding:6px 0;margin:0 0 8px}
+.module-steps li{font-size:10px}
+.module-steps li:before{font-size:9px}
+.module-summary{gap:7px;margin:0 0 8px}
+.module-summary div{padding:7px 12px}
+.module-summary b{font-size:21px}
+.module-summary span{font-size:10px}
+#view{padding-top:9px}
+#view label{font-size:12px;margin-bottom:3px}
+#view input:not([type=checkbox]):not([type=file]):not([type=radio]),#view select{
+  min-height:40px;padding:9px 11px;margin:4px 0 8px;font-size:13px
+}
+#view button,#view .button,#stationDialog button{
+  min-height:38px;padding:8px 12px;font-size:11px
+}
+#view .actions{gap:7px;margin:7px 0 9px}
+#view .actions>*{flex-basis:150px}
+#results{gap:6px;margin-top:8px}
+#results .person{padding:9px 11px}
+.empty-state{padding:15px 12px}
+.empty-state strong{font-size:19px;margin-bottom:3px}
+.empty-state p{font-size:11px}
+#view .hint,#notice{padding:9px 12px;margin:7px 0;font-size:11px}
+#video{max-height:38vh;margin:8px auto}
+.reportGrid{gap:10px;margin:8px 0}
+.reportGrid>div{padding:12px}
+.reportGrid h3{font-size:19px;margin-bottom:7px}
+.reportGrid p{font-size:11px}
+#view #walkForm{padding:12px}
+#view .pass{padding:14px;max-width:440px;margin:8px auto}
+#view .pass h2{font-size:24px}
+#view .bigCount{font-size:52px}
+@media(max-width:600px){
+ body:has(#content:not([hidden]))>.toolbar{min-height:38px;padding:4px 8px}
+ body:has(#content:not([hidden]))>.wrap{padding:5px 6px 7px}
+ #content:not([hidden]){padding:9px 11px;border-radius:12px}
+ #content #back{min-height:25px;font-size:10px}
+ .module-eyebrow{margin:3px 0 1px;font-size:8px}
+ #viewTitle{font-size:23px;margin-bottom:2px}
+ .module-description{font-size:11px;margin-bottom:5px}
+ .module-steps{padding:4px 0;margin-bottom:5px;gap:2px 9px}
+ .module-steps li{font-size:8px;gap:3px}
+ .module-summary{gap:4px;margin-bottom:5px}
+ .module-summary div{padding:5px 7px}
+ .module-summary b{font-size:18px}
+ .module-summary span{font-size:8px}
+ #view{padding-top:6px}
+ #view label{font-size:10px}
+ #view input:not([type=checkbox]):not([type=file]):not([type=radio]),#view select{min-height:35px;padding:7px 9px;margin:2px 0 5px;font-size:11px}
+ #view button,#view .button{min-height:34px;padding:6px 8px;font-size:9px}
+ #view .actions{gap:4px;margin:5px 0 6px}
+ #view .actions>*{flex:1 1 45%}
+ .empty-state{padding:10px 8px}.empty-state strong{font-size:17px}.empty-state p{font-size:9px}
+ #results{margin-top:5px}
+ #view .hint,#notice{padding:7px 9px;margin:5px 0}
+ .reportGrid{gap:6px;margin:5px 0}.reportGrid>div{padding:9px}.reportGrid h3{font-size:17px}
+ #view #walkForm{padding:9px}
+ #view .pass{padding:10px;margin:5px auto}
+}
