@@ -1,181 +1,37 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PD Warriors 2027 QR Event Pass</title>
 <style>
-:root{--g:#176b38;--r:#ef3217;--gold:#e4b51f;--iv:#fffef9;--ink:#145b31}
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,Arial,sans-serif;background:var(--iv);color:var(--ink)}
-#eventBrandBanner{background:var(--iv);border:2px solid var(--gold);border-radius:14px;width:calc(100% - 24px);max-width:900px;margin:10px auto 12px;padding:16px 10px 18px;text-align:center}
-.toolbar{max-width:900px;margin:auto;padding:8px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e7d58c;font-size:13px}
-.wrap{max-width:920px;margin:auto;padding:14px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.stat,.card{background:#fff;border:1.5px solid var(--gold);border-radius:12px;padding:12px}.stat b{display:block;font-size:22px;color:var(--g)}
-.orbit{position:relative;width:min(88vw,520px);aspect-ratio:1;margin:22px auto 14px;border:1.5px solid #edc94d;border-radius:50%;background:var(--iv)}
-.orbit:before{content:"";position:absolute;inset:17%;border:1px solid #edc94d;border-radius:50%}
-.orbit-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:36%;aspect-ratio:1;border-radius:50%;background:var(--g);border:4px solid var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;z-index:2}
-.orbit-center strong{font-size:22px;line-height:1}.orbit-center span{font-size:42px;font-weight:900;color:#f3c83b}.orbit-center small{font-size:8px}
-.orb{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);width:23%;aspect-ratio:1;border-radius:50%;border:2px solid var(--gold);background:#fff;color:var(--g);font-weight:800;padding:6px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.08}
-.homeNote{text-align:center;font-weight:700;font-size:13px;margin:10px auto 22px}
-button{font:inherit;cursor:pointer}.secondary,.back,button:not(.orb){border:1px solid var(--gold);border-radius:10px;padding:10px 12px;background:#fff;color:var(--g);font-weight:700}
+:root{--green:#145b31;--red:#ef3217;--gold:#e4b51f;--ivory:#fffef9}
+*{box-sizing:border-box}
+html,body{margin:0;max-width:100%;overflow-x:hidden;background:var(--ivory);color:var(--green);font-family:system-ui,Arial,sans-serif}
+#eventBrandBanner{width:calc(100% - 24px);max-width:900px;margin:12px auto 10px;padding:18px 12px;border:2px solid var(--gold);border-radius:16px;text-align:center;background:var(--ivory)}
+#eventBrandBanner>div:first-child{font-family:Georgia,serif;font-size:20px;line-height:1.08}
+#eventBrandBanner>div:last-child{font-family:Georgia,serif;font-size:30px!important;line-height:1.05}
+.toolbar{max-width:900px;margin:auto;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eadb9c;font-size:14px}
+.wrap{max-width:920px;margin:auto;padding:12px}
+.stats{display:none!important}
+.orbit{position:relative;width:min(92vw,560px);aspect-ratio:1;margin:24px auto 12px;border:1.7px solid var(--gold);border-radius:50%;background:var(--ivory)}
+.orbit:before{content:"";position:absolute;inset:18%;border:1px solid var(--gold);border-radius:50%}
+.orbit-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:36%;aspect-ratio:1;border-radius:50%;background:var(--green);border:4px solid var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:white;z-index:2;box-shadow:0 4px 14px #0001}
+.orbit-center strong{font-family:Georgia,serif;font-size:24px;line-height:1.02}.orbit-center span{font-size:46px;font-weight:900;color:#f2c63d;line-height:1}.orbit-center small{font-size:9px;margin-top:5px}
+.orb{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);width:24%;aspect-ratio:1;border-radius:50%;border:2px solid var(--gold);background:#fff;color:var(--green);font-weight:800;font-size:15px;padding:7px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.08;box-shadow:0 3px 9px #0000000d}
+.homeNote{text-align:center;font-weight:700;font-size:15px;margin:12px auto 24px}
+button{font:inherit;cursor:pointer}.secondary,.back,button:not(.orb){border:1px solid var(--gold);border-radius:10px;padding:10px 12px;background:#fff;color:var(--green);font-weight:700}
 .panel{background:#fff;border:1px solid #ddd;border-radius:14px;padding:16px}.panel[hidden]{display:none}.eyebrow{font-weight:800}.small,small{font-size:12px}
 .pass{max-width:520px;margin:15px auto;border:2px solid var(--gold);border-radius:16px;padding:18px;text-align:center}.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}.chip{background:#f2f2f2;border-radius:999px;padding:6px 9px;font-size:11px}
 .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.hint,#notice{padding:12px;border-left:4px solid var(--gold);background:#f7f8f5;margin:10px 0}
 dialog{border:1px solid var(--gold);border-radius:16px;max-width:430px}.choice{display:block;padding:10px}
 @media(max-width:600px){
- #eventBrandBanner{width:94vw;padding:16px 10px 18px}
- .toolbar{padding:8px 12px}.wrap{padding:10px 8px 18px}
- .stats{width:94vw;margin:auto;grid-template-columns:repeat(2,1fr);gap:8px}
- .stat{min-height:72px;padding:10px 12px;font-size:13px}.stat b{font-size:24px}
- .orbit{width:94vw;max-width:440px;margin:22px auto 12px}
- .orb{width:25%;font-size:12px;padding:7px}
- .orbit-center{width:37%}.orbit-center strong{font-size:18px}.orbit-center span{font-size:38px}.orbit-center small{font-size:8px}
- .homeNote{font-size:13px}
+ #eventBrandBanner{width:calc(100% - 20px);padding:16px 10px}
+ #eventBrandBanner>div:first-child{font-size:17px!important}
+ #eventBrandBanner>div:last-child{font-size:25px!important}
+ .toolbar{font-size:12px;padding:9px 12px}.toolbar select,.toolbar button{max-width:50%}
+ .wrap{padding:8px}
+ .orbit{width:min(94vw,440px);margin:20px auto 10px}
+ .orb{width:25%;font-size:13px}
+ .orbit-center{width:37%}.orbit-center strong{font-size:20px}.orbit-center span{font-size:40px}
+ .homeNote{font-size:14px}
 }
-
-<style id="mobile-readable-final-v51">
-@media (max-width: 600px) {
-  #eventBrandBanner {
-    width: 94vw !important;
-    margin: 10px auto 14px !important;
-    padding: 18px 12px 20px !important;
-  }
-
-  #eventBrandBanner > div:first-child {
-    font-size: 22px !important;
-    line-height: 1.15 !important;
-  }
-
-  #eventBrandBanner > div:last-child {
-    font-size: 34px !important;
-    line-height: 1.05 !important;
-  }
-
-  .toolbar {
-    padding: 10px 12px !important;
-    font-size: 14px !important;
-  }
-
-  .wrap {
-    padding: 12px 10px 28px !important;
-  }
-
-  .stats {
-    width: 94vw !important;
-    margin: 0 auto 14px !important;
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 10px !important;
-  }
-
-  .stat {
-    min-height: 84px !important;
-    padding: 12px 14px !important;
-    font-size: 14px !important;
-    border-radius: 12px !important;
-  }
-
-  .stat b {
-    font-size: 28px !important;
-    line-height: 1 !important;
-  }
-
-  .orbit {
-    width: 96vw !important;
-    max-width: 460px !important;
-    margin: 20px auto 16px !important;
-  }
-
-  .orbit .orb {
-    width: 25% !important;
-    font-size: 13px !important;
-    line-height: 1.1 !important;
-    padding: 8px !important;
-  }
-
-  .orbit-center {
-    width: 38% !important;
-  }
-
-  .orbit-center strong {
-    font-size: 20px !important;
-    line-height: 1.05 !important;
-  }
-
-  .orbit-center span {
-    font-size: 42px !important;
-  }
-
-  .orbit-center small {
-    font-size: 9px !important;
-  }
-
-  .homeNote {
-    font-size: 14px !important;
-    line-height: 1.35 !important;
-    margin-top: 14px !important;
-  }
-
-  .hint,
-  #notice,
-  .panel,
-  .card,
-  .person,
-  .choice,
-  p,
-  small {
-    font-size: 14px !important;
-    line-height: 1.45 !important;
-  }
-
-  .toolbar button,
-  .button,
-  button:not(.orb) {
-    min-height: 48px !important;
-    font-size: 14px !important;
-  }
-}
-</style>
-<style id="mobile-visual-fix-v52">
-@media(max-width:600px){
- #eventBrandBanner{width:96vw!important;padding:18px 12px!important}
- #eventBrandBanner>div:first-child{font-size:20px!important}
- #eventBrandBanner>div:last-child{font-size:30px!important}
- .toolbar{font-size:14px!important;padding:10px 14px!important}
- .wrap{padding:12px 6px 24px!important}
- .stats{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;width:94vw!important;margin:0 auto 18px!important}
- .stat{min-height:78px!important;padding:12px!important;font-size:14px!important}
- .stat b{font-size:26px!important}
- .orbit{width:96vw!important;max-width:none!important;margin:18px auto 16px!important}
- .orbit .orb{width:25%!important;font-size:13px!important;line-height:1.1!important;font-weight:800!important}
- .orbit-center{width:38%!important}
- .orbit-center strong{font-size:20px!important}.orbit-center span{font-size:42px!important}
- .homeNote{font-size:14px!important;margin-top:14px!important}
-}
-</style><style id="mobile-overflow-fix-v53">
-html,body{max-width:100%;overflow-x:hidden}
-@media(max-width:600px){
- #eventBrandBanner{width:calc(100% - 20px)!important;max-width:calc(100% - 20px)!important;margin:10px auto 12px!important}
- .toolbar{width:100%!important;max-width:100%!important;overflow:hidden!important;gap:8px!important}
- .toolbar>*{min-width:0!important}
- .toolbar select{max-width:48%!important;font-size:12px!important}
- .wrap{width:100%!important;max-width:100%!important;padding:10px 10px 24px!important;overflow:hidden!important}
- .stats{width:100%!important;max-width:100%!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;margin:0 auto 16px!important}
- .stat{min-width:0!important;width:auto!important;min-height:76px!important;padding:10px!important}
- .orbit{width:min(92vw,430px)!important;max-width:calc(100vw - 20px)!important;margin:18px auto 14px!important}
- .orbit .orb{font-size:13px!important}
- .homeNote{width:94%!important;margin:12px auto 20px!important}
- .sample-banner,.sampleBanner{width:100%!important;max-width:100%!important;overflow-wrap:anywhere!important}
-}
-</style><style id="viewport-proof-v54">
-/* Phone/tablet base: readable, proportional, no dependency on a narrow media-query match */
-.stats{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;width:calc(100% - 20px)!important;max-width:680px!important;margin:0 auto 18px!important}
-.stat{min-width:0!important;min-height:78px!important;padding:12px!important;font-size:15px!important}.stat b{font-size:27px!important}
-.orbit{width:min(94vw,560px)!important;max-width:calc(100% - 16px)!important;margin:20px auto 16px!important}
-.orbit .orb{font-size:14px!important;line-height:1.1!important;font-weight:800!important}
-.orbit-center strong{font-size:21px!important}.orbit-center span{font-size:43px!important}.orbit-center small{font-size:9px!important}
-.homeNote{font-size:15px!important;line-height:1.35!important}
-#eventBrandBanner>div:first-child{font-size:20px!important}#eventBrandBanner>div:last-child{font-size:30px!important}
-@media(min-width:800px){
- .stats{grid-template-columns:repeat(4,minmax(0,1fr))!important;max-width:900px!important}
- .orbit{width:min(70vw,620px)!important}
-}
-</style></head><body data-build="54">
+</style></head><body data-build="55">
 <div aria-label="GET TOGETHER 2027" id="eventBrandBanner" style="display:block;background:#fffef9;color:#145b31;border:2px solid #e4b51f;border-radius:14px;width:calc(100% - 20px);max-width:900px;margin:10px auto 12px;padding:15px 10px 17px;text-align:center;box-sizing:border-box"><div style="font-family:Georgia,'Times New Roman',serif;font-size:18px;line-height:1.1;letter-spacing:.02em;color:#145b31">PARKINSON’S DISEASE<br><strong>WARRIORS PHILIPPINES</strong></div><div style="position:relative;width:72%;height:1px;background:#e4b51f;margin:10px auto"><span style="position:absolute;width:10px;height:10px;border-radius:50%;background:#e4b51f;left:50%;top:50%;transform:translate(-50%,-50%)"></span></div><div style="font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:700;line-height:1;color:#145b31">GET TOGETHER <span style="color:#ef3217">2027</span></div></div>
 <div class="toolbar"><span id="connection"></span><button id="chooseStation" class="secondary"><span id="stationLabel">Choose station</span> ▾</button></div>
 <main class="wrap"><div id="notice" role="status" hidden></div><div id="orbitHome"><div class="stats"><div class="stat"><b id="total">0</b>Participants</div><div class="stat"><b id="reg">0</b>Attendance</div><div class="stat"><b id="snack">0</b>Snacks claimed</div><div class="stat"><b id="lunch">0</b>Lunches claimed</div></div>
