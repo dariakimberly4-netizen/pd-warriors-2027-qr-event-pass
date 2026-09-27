@@ -427,3 +427,32 @@ body:has(#content:not([hidden]))>.wrap{width:100%!important;max-width:1100px!imp
  .empty-state strong{font-size:20px!important}
  .empty-state p{font-size:11px!important}
 }
+
+
+/* BUILD 71 — readable mobile modules */
+@media(max-width:600px){
+ body:has(#content:not([hidden]))>.toolbar{font-size:13px!important;min-height:48px!important;padding:7px 10px!important}
+ #content:not([hidden]){padding:16px!important}
+ #content #back{font-size:14px!important;min-height:38px!important}
+ .module-eyebrow{font-size:11px!important;line-height:1.3!important;letter-spacing:.12em!important;margin:8px 0 5px!important}
+ #viewTitle{font-size:32px!important;line-height:1.08!important;margin:0 0 8px!important}
+ .module-description{font-size:16px!important;line-height:1.45!important;margin-bottom:12px!important}
+ .module-steps{display:flex!important;flex-direction:column!important;gap:5px!important;padding:10px 0!important;margin-bottom:12px!important}
+ .module-steps li{justify-content:flex-start!important;text-align:left!important;font-size:13px!important;line-height:1.35!important;gap:8px!important}
+ .module-steps li:before{font-size:11px!important}
+ .module-summary{grid-template-columns:1fr!important;gap:7px!important;margin-bottom:14px!important}
+ .module-summary div{min-height:0!important;padding:10px 12px!important;display:flex!important;align-items:center!important;justify-content:space-between!important}
+ .module-summary b{font-size:26px!important;line-height:1!important}
+ .module-summary span{font-size:13px!important;line-height:1.25!important}
+ #view{padding-top:13px!important}
+ #view label{font-size:15px!important;line-height:1.35!important}
+ #view input:not([type=checkbox]):not([type=file]):not([type=radio]),#view select{min-height:50px!important;padding:12px 13px!important;font-size:16px!important;margin:6px 0 10px!important}
+ #view .actions{display:grid!important;grid-template-columns:1fr!important;gap:8px!important;margin:8px 0 12px!important}
+ #view button,#view .button{width:100%!important;min-height:48px!important;padding:11px 12px!important;font-size:14px!important;line-height:1.25!important}
+ .empty-state{padding:22px 14px!important}
+ .empty-state strong{font-size:23px!important;line-height:1.2!important}
+ .empty-state p{font-size:14px!important;line-height:1.4!important}
+ #results .person strong{font-size:16px!important}
+ #results .person small{font-size:13px!important}
+ #view .hint,#notice{font-size:14px!important;line-height:1.45!important}
+}
