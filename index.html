@@ -42,6 +42,13 @@ html{-webkit-text-size-adjust:100%}body{overflow-x:hidden}.wrap{width:min(100% -
 @media(min-width:601px){
  #orbitHome{min-height:calc(100vh - 190px)}
 }
+<style id="mobile-dashboard-center-final">
+@media(max-width:600px){
+ #orbitHome{min-height:calc(100dvh - 250px)!important;display:grid!important;grid-template-rows:auto 1fr auto!important;align-items:center!important}
+ #orbitHome .stats{align-self:start!important}
+ #orbitHome .orbit{align-self:center!important;margin:clamp(34px,7vh,72px) auto clamp(22px,4vh,42px)!important}
+ #orbitHome .homeNote{align-self:start!important;margin:0 auto clamp(20px,5vh,48px)!important}
+}
 </style></head><body>
 <header><h1>PARKINSON’S DISEASE WARRIORS PHILIPPINES</h1><p>GET TOGETHER 2027</p></header>
 <div class="toolbar"><span id="connection"></span><button id="chooseStation" class="secondary"><span id="stationLabel">Choose station</span> ▾</button></div>
