@@ -39,14 +39,14 @@ async function checkOffline(){if(!('serviceWorker'in navigator)){if($('offlineSt
 async function prepareOffline(){try{if(!('serviceWorker'in navigator))throw Error('Offline mode needs a supported browser on HTTPS.');$('offlineStatus').textContent='Saving app files…';const reg=await navigator.serviceWorker.register('./sw.js');await reg.update();await navigator.serviceWorker.ready;if(navigator.storage?.persist)await navigator.storage.persist();await checkOffline()}catch(e){$('offlineStatus').textContent='Offline setup failed. Stay online and retry. '+e.message}}
 function setup(){stopCamera();$('stationDialog').showModal()}
 $('chooseStation').onclick=setup;$('stationForm').onsubmit=e=>{e.preventDefault();const val=new FormData(e.target).get('station');if(!['registration','snack','lunch'].includes(val))return;station=val;localStorage.setItem('pdw27station',val);$('stationDialog').close();stats();home()};$('back').onclick=home;
-for(const b of document.querySelectorAll('[data-module]')){if(!JSON.parse(localStorage.getItem('pdw27seen-v2')||'[]').includes(b.dataset.module))b.classList.add('new');b.onclick=()=>show(b.dataset.module)}
+for(const b of document.querySelectorAll('[data-module]')){b.classList.remove('new');b.onclick=()=>show(b.dataset.module)}
 window.addEventListener('storage',e=>{if(e.key===KEY){people=read();stats();if($('results'))renderSearch();if(selected&&$('detail'))openPerson(selected)}});
 function connectivity(){$('connection').textContent=navigator.onLine?'Connection available':'Offline · records stay on this device'}window.addEventListener('online',connectivity);window.addEventListener('offline',connectivity);connectivity();stats();if(!station)setup();
 if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
 
 if(SAMPLE_MODE)localStorage.setItem('pdw27-sample-feature-seen','1');
 // New-feature highlight: walk-in participant + companion pairing. Clears after first open.
-const PAIR_HIGHLIGHT='pdw27-pairing-seen-v1';
+const PAIR_HIGHLIGHT='pdw27-pairing-seen-v2';
 const walkBtn=document.querySelector('[data-module="walkin"]');
 if(walkBtn&&!localStorage.getItem(PAIR_HIGHLIGHT)){walkBtn.classList.add('new');const old=walkBtn.onclick;walkBtn.onclick=(e)=>{localStorage.setItem(PAIR_HIGHLIGHT,'1');walkBtn.classList.remove('new');if(old)old.call(walkBtn,e)}}
 const groupBanner=document.createElement('div');groupBanner.className='hint';groupBanner.style.maxWidth='1064px';groupBanner.style.margin='12px auto';
