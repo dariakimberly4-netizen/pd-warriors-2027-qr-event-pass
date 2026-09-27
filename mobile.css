@@ -92,3 +92,17 @@ body{min-height:100dvh}
   width:21%;
   height:14%;
 }
+
+
+/* BUILD 79 — remove white gap below home poster only; module screens unchanged. */
+body:has(#orbitHome:not([hidden])){background:var(--green)!important}
+body:has(#orbitHome:not([hidden]))>.wrap{background:var(--green)!important}
+#orbitHome{
+  min-height:0!important;
+  height:auto!important;
+  background:var(--green)!important;
+}
+.poster-orbit{
+  margin:0 auto!important;
+  background:var(--green)!important;
+}
