@@ -131,11 +131,27 @@ dialog{border:1px solid var(--gold);border-radius:16px;max-width:430px}.choice{d
   }
 }
 </style>
-</head><body data-build="51">
+<style id="mobile-visual-fix-v52">
+@media(max-width:600px){
+ #eventBrandBanner{width:96vw!important;padding:18px 12px!important}
+ #eventBrandBanner>div:first-child{font-size:20px!important}
+ #eventBrandBanner>div:last-child{font-size:30px!important}
+ .toolbar{font-size:14px!important;padding:10px 14px!important}
+ .wrap{padding:12px 6px 24px!important}
+ .stats{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;width:94vw!important;margin:0 auto 18px!important}
+ .stat{min-height:78px!important;padding:12px!important;font-size:14px!important}
+ .stat b{font-size:26px!important}
+ .orbit{width:96vw!important;max-width:none!important;margin:18px auto 16px!important}
+ .orbit .orb{width:25%!important;font-size:13px!important;line-height:1.1!important;font-weight:800!important}
+ .orbit-center{width:38%!important}
+ .orbit-center strong{font-size:20px!important}.orbit-center span{font-size:42px!important}
+ .homeNote{font-size:14px!important;margin-top:14px!important}
+}
+</style></head><body data-build="52">
 <div aria-label="GET TOGETHER 2027" id="eventBrandBanner" style="display:block;background:#fffef9;color:#145b31;border:2px solid #e4b51f;border-radius:14px;width:calc(100% - 20px);max-width:900px;margin:10px auto 12px;padding:15px 10px 17px;text-align:center;box-sizing:border-box"><div style="font-family:Georgia,'Times New Roman',serif;font-size:18px;line-height:1.1;letter-spacing:.02em;color:#145b31">PARKINSON’S DISEASE<br><strong>WARRIORS PHILIPPINES</strong></div><div style="position:relative;width:72%;height:1px;background:#e4b51f;margin:10px auto"><span style="position:absolute;width:10px;height:10px;border-radius:50%;background:#e4b51f;left:50%;top:50%;transform:translate(-50%,-50%)"></span></div><div style="font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:700;line-height:1;color:#145b31">GET TOGETHER <span style="color:#ef3217">2027</span></div></div>
 <div class="toolbar"><span id="connection"></span><button id="chooseStation" class="secondary"><span id="stationLabel">Choose station</span> ▾</button></div>
-<main class="wrap"><div id="notice" role="status" hidden></div><div id="orbitHome"><div class="stats" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:94%;margin:0 auto"><div class="stat"><b id="total">0</b>Participants</div><div class="stat"><b id="reg">0</b>Attendance</div><div class="stat"><b id="snack">0</b>Snacks claimed</div><div class="stat"><b id="lunch">0</b>Lunches claimed</div></div>
-<div class="orbit" aria-label="Event modules" style="width:min(94vw,440px);height:auto;aspect-ratio:1;margin:22px auto 12px"><div class="orbit-center"><strong>GET<br>TOGETHER</strong><span>2027</span><small>EVENT PASSES</small></div>
+<main class="wrap"><div id="notice" role="status" hidden></div><div id="orbitHome"><div class="stats"><div class="stat"><b id="total">0</b>Participants</div><div class="stat"><b id="reg">0</b>Attendance</div><div class="stat"><b id="snack">0</b>Snacks claimed</div><div class="stat"><b id="lunch">0</b>Lunches claimed</div></div>
+<div class="orbit" aria-label="Event modules"><div class="orbit-center"><strong>GET<br>TOGETHER</strong><span>2027</span><small>EVENT PASSES</small></div>
 <button class="orb" data-module="registration" style="--x:50%;--y:9%">Attendance</button>
 <button class="orb" data-module="walkin" style="--x:79%;--y:21%">Walk-in</button>
 <button class="orb" data-module="snack" style="--x:91%;--y:50%">Snack</button>
