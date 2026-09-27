@@ -31,11 +31,58 @@ dialog{border:1px solid var(--gold);border-radius:16px;max-width:430px}.choice{d
  .orbit-center{width:37%}.orbit-center strong{font-size:20px}.orbit-center span{font-size:40px}
  .homeNote{font-size:14px}
 }
-</style></head><body data-build="55">
+</style><style id="approved-poster-ui-v56">
+/* Exact approved visual direction: poster-like portal, no dashboard */
+.stats{display:none!important}
+.sample-banner,.sampleBanner,#sampleBanner{display:none!important}
+#orbitHome{padding-top:8px}
+#eventBrandBanner{
+  background:linear-gradient(135deg,#fffdf5 0%,#fffaf0 60%,#fffef9 100%)!important;
+  border:0!important;border-radius:0!important;
+  max-width:900px!important;padding:26px 12px 22px!important;margin:0 auto 4px!important;
+}
+#eventBrandBanner>div:first-child{font-family:Georgia,'Times New Roman',serif!important;font-size:25px!important;font-weight:700!important;letter-spacing:.02em!important}
+#eventBrandBanner>div:last-child{font-family:Georgia,'Times New Roman',serif!important;font-size:42px!important;font-weight:800!important}
+.toolbar{max-width:900px!important;border-bottom:1px solid #e4b51f!important;padding:10px 16px!important}
+.wrap{max-width:900px!important;padding:6px 10px 28px!important}
+.orbit{
+ width:min(92vw,650px)!important;max-width:650px!important;
+ border:4px solid #dda915!important;
+ background:radial-gradient(circle,#fffef9 0 56%,#fff8e7 57% 100%)!important;
+ box-shadow:0 10px 30px #b98d1820!important;margin:18px auto 14px!important;
+}
+.orbit:before{inset:18%!important;border:2px solid #f0cf65!important}
+.orbit-center{
+ width:43%!important;background:linear-gradient(145deg,#07542e,#176b38)!important;
+ border:7px solid #e4b51f!important;box-shadow:0 9px 22px #0002!important;
+}
+.orbit-center strong{font-family:Georgia,'Times New Roman',serif!important;font-size:32px!important;line-height:1.08!important}
+.orbit-center span{font-size:66px!important;color:#f4c640!important;line-height:1!important}
+.orbit-center small{font-size:12px!important;letter-spacing:.25em!important;margin-top:8px!important}
+.orb{
+ width:28%!important;border:4px solid #e4b51f!important;background:#fffdf6!important;
+ font-size:18px!important;box-shadow:0 8px 15px #8b6a1628!important;color:#07542e!important;
+}
+.homeNote{
+ width:min(88vw,540px)!important;border:2px solid #e4b51f!important;border-radius:999px!important;
+ padding:13px 18px!important;background:#fffdf6!important;font-family:Georgia,'Times New Roman',serif!important;
+ font-size:17px!important;color:#07542e!important;
+}
+@media(max-width:600px){
+ #eventBrandBanner{padding:20px 10px 18px!important}
+ #eventBrandBanner>div:first-child{font-size:17px!important}
+ #eventBrandBanner>div:last-child{font-size:27px!important}
+ .orbit{width:94vw!important;max-width:470px!important;border-width:3px!important}
+ .orbit-center{width:42%!important;border-width:5px!important}
+ .orbit-center strong{font-size:21px!important}.orbit-center span{font-size:46px!important}.orbit-center small{font-size:8px!important}
+ .orb{width:27%!important;border-width:3px!important;font-size:13px!important}
+ .homeNote{font-size:14px!important;padding:11px 12px!important}
+}
+</style></head><body data-build="56">
 <div aria-label="GET TOGETHER 2027" id="eventBrandBanner" style="display:block;background:#fffef9;color:#145b31;border:2px solid #e4b51f;border-radius:14px;width:calc(100% - 20px);max-width:900px;margin:10px auto 12px;padding:15px 10px 17px;text-align:center;box-sizing:border-box"><div style="font-family:Georgia,'Times New Roman',serif;font-size:18px;line-height:1.1;letter-spacing:.02em;color:#145b31">PARKINSON’S DISEASE<br><strong>WARRIORS PHILIPPINES</strong></div><div style="position:relative;width:72%;height:1px;background:#e4b51f;margin:10px auto"><span style="position:absolute;width:10px;height:10px;border-radius:50%;background:#e4b51f;left:50%;top:50%;transform:translate(-50%,-50%)"></span></div><div style="font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:700;line-height:1;color:#145b31">GET TOGETHER <span style="color:#ef3217">2027</span></div></div>
 <div class="toolbar"><span id="connection"></span><button id="chooseStation" class="secondary"><span id="stationLabel">Choose station</span> ▾</button></div>
 <main class="wrap"><div id="notice" role="status" hidden></div><div id="orbitHome"><div class="stats"><div class="stat"><b id="total">0</b>Participants</div><div class="stat"><b id="reg">0</b>Attendance</div><div class="stat"><b id="snack">0</b>Snacks claimed</div><div class="stat"><b id="lunch">0</b>Lunches claimed</div></div>
-<div class="orbit" aria-label="Event modules"><div class="orbit-center"><strong>GET<br>TOGETHER</strong><span>2027</span><small>EVENT PASSES</small></div>
+<div class="orbit" aria-label="Event modules"><div class="orbit-center"><strong>GET<br>TOGETHER</strong><span>2027</span><small>EVENT PORTAL</small></div>
 <button class="orb" data-module="registration" style="--x:50%;--y:9%">Attendance</button>
 <button class="orb" data-module="walkin" style="--x:79%;--y:21%">Walk-in</button>
 <button class="orb" data-module="snack" style="--x:91%;--y:50%">Snack</button>
