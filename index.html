@@ -162,7 +162,20 @@ html,body{max-width:100%;overflow-x:hidden}
  .homeNote{width:94%!important;margin:12px auto 20px!important}
  .sample-banner,.sampleBanner{width:100%!important;max-width:100%!important;overflow-wrap:anywhere!important}
 }
-</style></head><body data-build="53">
+</style><style id="viewport-proof-v54">
+/* Phone/tablet base: readable, proportional, no dependency on a narrow media-query match */
+.stats{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;width:calc(100% - 20px)!important;max-width:680px!important;margin:0 auto 18px!important}
+.stat{min-width:0!important;min-height:78px!important;padding:12px!important;font-size:15px!important}.stat b{font-size:27px!important}
+.orbit{width:min(94vw,560px)!important;max-width:calc(100% - 16px)!important;margin:20px auto 16px!important}
+.orbit .orb{font-size:14px!important;line-height:1.1!important;font-weight:800!important}
+.orbit-center strong{font-size:21px!important}.orbit-center span{font-size:43px!important}.orbit-center small{font-size:9px!important}
+.homeNote{font-size:15px!important;line-height:1.35!important}
+#eventBrandBanner>div:first-child{font-size:20px!important}#eventBrandBanner>div:last-child{font-size:30px!important}
+@media(min-width:800px){
+ .stats{grid-template-columns:repeat(4,minmax(0,1fr))!important;max-width:900px!important}
+ .orbit{width:min(70vw,620px)!important}
+}
+</style></head><body data-build="54">
 <div aria-label="GET TOGETHER 2027" id="eventBrandBanner" style="display:block;background:#fffef9;color:#145b31;border:2px solid #e4b51f;border-radius:14px;width:calc(100% - 20px);max-width:900px;margin:10px auto 12px;padding:15px 10px 17px;text-align:center;box-sizing:border-box"><div style="font-family:Georgia,'Times New Roman',serif;font-size:18px;line-height:1.1;letter-spacing:.02em;color:#145b31">PARKINSON’S DISEASE<br><strong>WARRIORS PHILIPPINES</strong></div><div style="position:relative;width:72%;height:1px;background:#e4b51f;margin:10px auto"><span style="position:absolute;width:10px;height:10px;border-radius:50%;background:#e4b51f;left:50%;top:50%;transform:translate(-50%,-50%)"></span></div><div style="font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:700;line-height:1;color:#145b31">GET TOGETHER <span style="color:#ef3217">2027</span></div></div>
 <div class="toolbar"><span id="connection"></span><button id="chooseStation" class="secondary"><span id="stationLabel">Choose station</span> ▾</button></div>
 <main class="wrap"><div id="notice" role="status" hidden></div><div id="orbitHome"><div class="stats"><div class="stat"><b id="total">0</b>Participants</div><div class="stat"><b id="reg">0</b>Attendance</div><div class="stat"><b id="snack">0</b>Snacks claimed</div><div class="stat"><b id="lunch">0</b>Lunches claimed</div></div>
