@@ -37,9 +37,104 @@ async function scanImage(e){const file=e.target.files[0];if(!file)return;try{con
 function renderRaffle(){const entered=people.filter(p=>p.role!=='Companion'&&p.registration&&p.raffle),winners=entered.filter(p=>p.won);$('view').innerHTML=`<div class="bigCount">${entered.length}</div><p>Eligible raffle entries</p><div class="actions"><button id="camera">OPEN QR CAMERA</button><label class="button secondary">READ QR SCREENSHOT<input type="file" id="qrImage" accept="image/*" hidden></label></div><video id="video" hidden playsinline muted></video><div id="scanStatus" role="status"></div><div id="detail"></div><button id="draw" ${station!=='registration'?'disabled':''}>DRAW ONE WINNER</button><div id="winner" aria-live="polite"></div><p><strong>Winners drawn: ${winners.length}</strong></p>`;$('camera').onclick=startCamera;$('qrImage').onchange=scanImage;$('draw').onclick=async()=>{if(eventLocked)return notice('EVENT LOCKED · raffle draw is closed.');if(station!=='registration')return;let winner;const ok=await change(list=>{const pool=list.filter(p=>p.role!=='Companion'&&p.registration&&p.raffle&&!p.won);if(!pool.length)throw Error('No remaining eligible entries.');let r,limit=Math.floor(4294967296/pool.length)*pool.length;do{r=crypto.getRandomValues(new Uint32Array(1))[0]}while(r>=limit);winner=pool[r%pool.length];winner.won=new Date().toISOString()});if(ok){renderRaffle();$('winner').innerHTML=`<div class="pass"><p>WINNER</p><h2>${esc(winner.name)}</h2><strong>${esc(winner.id)}</strong></div>`}}}
 function csvParse(text){const rows=[];let row=[],value='',quoted=false;for(let i=0;i<text.length;i++){const c=text[i];if(c==='"'){if(quoted&&text[i+1]==='"'){value+='"';i++}else quoted=!quoted}else if(c===','&&!quoted){row.push(value);value=''}else if((c==='\n'||c==='\r')&&!quoted){if(c==='\r'&&text[i+1]==='\n')i++;row.push(value);if(row.some(v=>v.trim()))rows.push(row);row=[];value=''}else value+=c}if(quoted)throw Error('CSV has an unclosed quote.');row.push(value);if(row.some(v=>v.trim()))rows.push(row);return rows}
 function safePerson(p){if(!p||typeof p.name!=='string'||!p.name.trim()||p.name.length>100||typeof p.id!=='string'||!/^PDW27-[A-Za-z0-9-]{1,50}$/.test(p.id))throw Error('Invalid attendee name or ID.');const out={id:p.id,name:p.name.trim(),sample:!!p.sample,role:typeof p.role==='string'?p.role:'',pair:typeof p.pair==='string'?p.pair:'',companionOf:typeof p.companionOf==='string'?p.companionOf:null,mobile:typeof p.mobile==='string'?p.mobile.slice(0,30):'',walkin:!!p.walkin};for(const key of ['registration','snack','lunch','raffle','won']){if(p[key]&&(!Number.isFinite(Date.parse(p[key]))||typeof p[key]!=='string'))throw Error('Invalid claim timestamp.');out[key]=p[key]||null}return out}
-async function importFile(e){const file=e.target.files[0];if(!file)return;try{const text=await file.text();let incoming;if(file.name.toLowerCase().endsWith('.json')){const data=JSON.parse(text);if(data.event!==EVENT||!Array.isArray(data.people))throw Error('Choose an event backup JSON.');incoming=data.people.map(safePerson)}else{if(station!=='registration')throw Error('Import CSV on the Registration device, then export a JSON roster to the other stations.');const rows=csvParse(text.replace(/^\uFEFF/,'')),head=rows.shift()?.map(h=>h.toLowerCase().trim())||[];const ni=head.findIndex(x=>['name','full name','participant'].includes(x)),ii=head.findIndex(x=>['id','attendee id'].includes(x)),mi=head.findIndex(x=>['mobile','phone'].includes(x));if(ni<0)throw Error('CSV must have a Name column. Optional columns: ID, Mobile.');const names=new Map(people.map(p=>[p.name.toLowerCase(),p.id]));incoming=rows.map(r=>{const name=(r[ni]||'').trim();let id=ii>=0?r[ii]?.trim():'';if(!id)id=names.get(name.toLowerCase())||'PDW27-'+crypto.randomUUID().slice(0,8).toUpperCase();names.set(name.toLowerCase(),id);return safePerson({name,id,mobile:mi>=0?r[mi]:''})})}if(!incoming.length)throw Error('No attendees found.');if(incoming.some(p=>p.id.startsWith('PDW27-SAMPLE-')!==SAMPLE_MODE))throw Error('Sample and event records must stay in their separate workspaces.');if(!confirm(`Import ${incoming.length} records? Existing claims will be preserved. Conflicting IDs will stop the import.`))return;const ok=await change(list=>{for(const p of incoming){const old=list.find(x=>x.id===p.id);if(old){if(old.name.toLowerCase().trim()!==p.name.toLowerCase())throw Error('ID conflict: '+p.id+'. No changes saved.');for(const k of ['registration','snack','lunch','raffle','won'])if(p[k]&&(!old[k]||p[k]<old[k]))old[k]=p[k]}else list.push(p)}});if(ok){renderReport();notice('Import complete. Existing claims preserved.')}}catch(e){notice(e.message)}e.target.value=''}
+function attendeeRowsToPeople(rawRows){
+ const rows=rawRows.filter(r=>Array.isArray(r)&&r.some(v=>String(v??'').trim()));
+ if(!rows.length)return [];
+ const head=rows.shift().map(h=>String(h??'').toLowerCase().trim().replace(/\s+/g,' '));
+ const idx=(names)=>head.findIndex(h=>names.includes(h));
+ const val=(r,i)=>i>=0?String(r[i]??'').trim():'';
+ const pairIndex=idx(['pair','pair no','pair number']);
+ const pNameIndex=idx(['participant name','participant full name']);
+ const pIdIndex=idx(['participant id','participant attendee id']);
+ const pMobileIndex=idx(['participant mobile','participant phone']);
+ const cNameIndex=idx(['companion name','companion full name']);
+ const cIdIndex=idx(['companion id','companion attendee id']);
+ const cMobileIndex=idx(['companion mobile','companion phone']);
+ const existingNames=new Map(people.map(p=>[p.name.toLowerCase(),p.id]));
+ const made=[];
+ if(pNameIndex>=0&&cNameIndex>=0){
+   rows.forEach((r,i)=>{
+     const pName=val(r,pNameIndex),cName=val(r,cNameIndex);
+     if(!pName&&!cName)return;
+     const pair=val(r,pairIndex)||String(i+1).padStart(2,'0');
+     let pId=val(r,pIdIndex);
+     if(!pId&&pName)pId=existingNames.get(pName.toLowerCase())||'PDW27-P'+String(i+1).padStart(3,'0');
+     let cId=val(r,cIdIndex);
+     if(!cId&&cName)cId=existingNames.get(cName.toLowerCase())||'PDW27-C'+String(i+1).padStart(3,'0');
+     if(pName){
+       existingNames.set(pName.toLowerCase(),pId);
+       made.push(safePerson({name:pName,id:pId,mobile:val(r,pMobileIndex),role:'Participant',pair,companionOf:null}));
+     }
+     if(cName){
+       existingNames.set(cName.toLowerCase(),cId);
+       made.push(safePerson({name:cName,id:cId,mobile:val(r,cMobileIndex),role:'Companion',pair,companionOf:pId||null}));
+     }
+   });
+   return made;
+ }
+ const ni=idx(['name','full name','attendee name','participant']);
+ const ii=idx(['id','attendee id']);
+ const mi=idx(['mobile','phone','mobile number','contact number']);
+ const ri=idx(['role','attendee role']);
+ const pi=pairIndex;
+ const ci=idx(['companion of','companionof','linked participant id']);
+ if(ni<0)throw Error('Excel/CSV must have a Name column, or paired columns Participant Name and Companion Name.');
+ rows.forEach((r,i)=>{
+   const name=val(r,ni);
+   if(!name)return;
+   const roleRaw=val(r,ri);
+   const role=/^companion$/i.test(roleRaw)?'Companion':'Participant';
+   let id=val(r,ii);
+   if(!id)id=existingNames.get(name.toLowerCase())||'PDW27-'+(role==='Companion'?'C':'P')+crypto.randomUUID().slice(0,8).toUpperCase();
+   existingNames.set(name.toLowerCase(),id);
+   made.push(safePerson({name,id,mobile:val(r,mi),role,pair:val(r,pi),companionOf:val(r,ci)||null}));
+ });
+ return made;
+}
+async function importFile(e){
+ const file=e.target.files[0];if(!file)return;
+ try{
+   const lower=file.name.toLowerCase();
+   let incoming;
+   if(lower.endsWith('.json')){
+     const text=await file.text(),data=JSON.parse(text);
+     if(data.event!==EVENT||!Array.isArray(data.people))throw Error('Choose an event backup JSON.');
+     incoming=data.people.map(safePerson);
+   }else if(lower.endsWith('.xlsx')||lower.endsWith('.xls')){
+     if(station!=='registration')throw Error('Import Excel on the Registration device, then export a JSON roster to the other stations.');
+     if(typeof XLSX==='undefined')throw Error('Excel reader is not available yet. Reopen this page while connected, then try again.');
+     const buf=await file.arrayBuffer(),book=XLSX.read(buf,{type:'array',cellDates:false});
+     const sheet=book.Sheets[book.SheetNames[0]];
+     if(!sheet)throw Error('The Excel file has no readable worksheet.');
+     const rows=XLSX.utils.sheet_to_json(sheet,{header:1,defval:'',raw:false});
+     incoming=attendeeRowsToPeople(rows);
+   }else{
+     if(station!=='registration')throw Error('Import CSV on the Registration device, then export a JSON roster to the other stations.');
+     const text=await file.text(),rows=csvParse(text.replace(/^\uFEFF/,''));
+     incoming=attendeeRowsToPeople(rows);
+   }
+   if(!incoming.length)throw Error('No attendees found.');
+   if(incoming.some(p=>p.id.startsWith('PDW27-SAMPLE-')!==SAMPLE_MODE))throw Error('Sample and event records must stay in their separate workspaces.');
+   if(!confirm(`Import ${incoming.length} attendee records? Existing claims will be preserved.`))return;
+   const ok=await change(list=>{
+     for(const p of incoming){
+       const old=list.find(x=>x.id===p.id);
+       if(old){
+         if(old.name.toLowerCase().trim()!==p.name.toLowerCase())throw Error('ID conflict: '+p.id+'. No changes saved.');
+         if(p.mobile)old.mobile=p.mobile;
+         if(p.role)old.role=p.role;
+         if(p.pair)old.pair=p.pair;
+         if(p.companionOf)old.companionOf=p.companionOf;
+         for(const k of ['registration','snack','lunch','raffle','won'])if(p[k]&&(!old[k]||p[k]<old[k]))old[k]=p[k];
+       }else list.push(p);
+     }
+   });
+   if(ok){renderReport();notice('Attendee import complete. Excel/CSV details and existing claims were preserved.');}
+ }catch(e){notice(e.message)}
+ e.target.value='';
+}
 function exportCSV(){const rows=[['ID','Name','Walk-in','Registration','Snack','Lunch','Raffle','Winner'],...people.map(p=>[p.id,p.name,p.walkin?'Yes':'No',p.registration||'',p.snack||'',p.lunch||'',p.raffle||'',p.won||''])];download(rows.map(r=>r.map(v=>'"'+String(v).replace(/^[=+@-]/,"'$&").replaceAll('"','""')+'"').join(',')).join('\r\n'),'pdw-2027-report.csv','text/csv')}
-function renderReport(){$('view').innerHTML=`<div class="hint"><strong>EVENT SUMMARY</strong><p>Present: ${people.filter(p=>p.registration).length} · Participants: ${people.filter(p=>p.role!=='Companion').length} · Companions: ${people.filter(p=>p.role==='Companion').length} · Walk-ins: ${people.filter(p=>p.walkin).length}<br>Snacks: ${people.filter(p=>p.snack).length} · Lunches: ${people.filter(p=>p.lunch).length} · Raffle entries: ${people.filter(p=>p.role!=='Companion'&&p.raffle).length} · Winners: ${people.filter(p=>p.won).length}</p><strong>${eventLocked?'🔒 EVENT LOCKED · READ ONLY':'EVENT ACTIVE'}</strong></div><div class="reportGrid"><div><h3>Prepare this device</h3><p>1. Open this site while online.<br>2. Choose its station.<br>3. Import the same roster backup.<br>4. Tap Prepare offline, then reopen in airplane mode to test.</p><button id="prepare">PREPARE / TEST OFFLINE</button><p id="offlineStatus" role="status">Checking offline files…</p></div><div><h3>Attendee list & backups</h3><p>${people.length} participants · ${people.filter(p=>p.raffle).length} raffle entries</p><label class="button">Import CSV / backup<input id="import" type="file" accept=".csv,.json" hidden></label><p class="small">Google Sheets: download as CSV with a Name column. Import CSV once on Registration. Export the JSON roster to each claim device.</p><div class="actions"><button id="backup">BACKUP NOW</button><button id="csv" class="secondary">Export report CSV</button><button id="lockEvent" class="red">${eventLocked?'UNLOCK EVENT':'END EVENT · LOCK RECORDS'}</button></div></div></div><div class="hint"><strong>Offline station rule</strong><p>Use one Registration & raffle device, one Snack device, and one Lunch device. These devices do not automatically synchronize, even on the same Wi-Fi. Transfer backup files manually to merge records without clearing claims. Walk-in QR codes carry the name and number; claim staff verify new walk-ins before adding them.</p><p>Keep this browser’s data; clearing it removes this device’s records. Export backups during the event.</p></div>`;$('import').onchange=importFile;$('backup').onclick=()=>download(JSON.stringify({event:EVENT,sample:SAMPLE_MODE,exportedAt:new Date().toISOString(),station,people},null,2),'pdw27-'+station+'-backup.json','application/json');const FEATURE_HL='pdw27-controls-highlight-v21';const seenControls=JSON.parse(localStorage.getItem(FEATURE_HL)||'[]');for(const id of ['backup','lockEvent']){const el=$(id);if(el&&!seenControls.includes(id)){el.style.position='relative';el.classList.add('new');const clear=()=>{let s=JSON.parse(localStorage.getItem(FEATURE_HL)||'[]');if(!s.includes(id)){s.push(id);localStorage.setItem(FEATURE_HL,JSON.stringify(s))}el.classList.remove('new')};el.addEventListener('click',clear,{once:true})}}$('csv').onclick=exportCSV;$('lockEvent').onclick=()=>{const msg=eventLocked?'Unlock event records and allow claims again?':'End the event and lock attendance, food claims, walk-ins and raffle drawing? Reports and backups will remain available.';if(confirm(msg)){eventLocked=!eventLocked;localStorage.setItem('pdw27-event-locked',eventLocked?'1':'0');renderReport();notice(eventLocked?'EVENT LOCKED · records are now read-only.':'EVENT UNLOCKED.')}};$('prepare').onclick=prepareOffline;checkOffline()}
+function renderReport(){$('view').innerHTML=`<div class="hint"><strong>EVENT SUMMARY</strong><p>Present: ${people.filter(p=>p.registration).length} · Participants: ${people.filter(p=>p.role!=='Companion').length} · Companions: ${people.filter(p=>p.role==='Companion').length} · Walk-ins: ${people.filter(p=>p.walkin).length}<br>Snacks: ${people.filter(p=>p.snack).length} · Lunches: ${people.filter(p=>p.lunch).length} · Raffle entries: ${people.filter(p=>p.role!=='Companion'&&p.raffle).length} · Winners: ${people.filter(p=>p.won).length}</p><strong>${eventLocked?'🔒 EVENT LOCKED · READ ONLY':'EVENT ACTIVE'}</strong></div><div class="reportGrid"><div><h3>Prepare this device</h3><p>1. Open this site while online.<br>2. Choose its station.<br>3. Import the same roster backup.<br>4. Tap Prepare offline, then reopen in airplane mode to test.</p><button id="prepare">PREPARE / TEST OFFLINE</button><p id="offlineStatus" role="status">Checking offline files…</p></div><div><h3>Attendee list & backups</h3><p>${people.length} participants · ${people.filter(p=>p.raffle).length} raffle entries</p><label class="button">Upload Excel / CSV / backup<input id="import" type="file" accept=".xlsx,.xls,.csv,.json" hidden></label><p class="small">Upload Excel (.xlsx/.xls), CSV, or a JSON backup. Excel can use either Name / ID / Mobile / Role / Pair / Companion Of columns, or paired Participant Name / Participant ID / Companion Name / Companion ID columns. Import on Registration, then export the JSON roster to each claim device.</p><div class="actions"><button id="backup">BACKUP NOW</button><button id="csv" class="secondary">Export report CSV</button><button id="lockEvent" class="red">${eventLocked?'UNLOCK EVENT':'END EVENT · LOCK RECORDS'}</button></div></div></div><div class="hint"><strong>Offline station rule</strong><p>Use one Registration & raffle device, one Snack device, and one Lunch device. These devices do not automatically synchronize, even on the same Wi-Fi. Transfer backup files manually to merge records without clearing claims. Walk-in QR codes carry the name and number; claim staff verify new walk-ins before adding them.</p><p>Keep this browser’s data; clearing it removes this device’s records. Export backups during the event.</p></div>`;$('import').onchange=importFile;$('backup').onclick=()=>download(JSON.stringify({event:EVENT,sample:SAMPLE_MODE,exportedAt:new Date().toISOString(),station,people},null,2),'pdw27-'+station+'-backup.json','application/json');const FEATURE_HL='pdw27-controls-highlight-v21';const seenControls=JSON.parse(localStorage.getItem(FEATURE_HL)||'[]');for(const id of ['backup','lockEvent']){const el=$(id);if(el&&!seenControls.includes(id)){el.style.position='relative';el.classList.add('new');const clear=()=>{let s=JSON.parse(localStorage.getItem(FEATURE_HL)||'[]');if(!s.includes(id)){s.push(id);localStorage.setItem(FEATURE_HL,JSON.stringify(s))}el.classList.remove('new')};el.addEventListener('click',clear,{once:true})}}$('csv').onclick=exportCSV;$('lockEvent').onclick=()=>{const msg=eventLocked?'Unlock event records and allow claims again?':'End the event and lock attendance, food claims, walk-ins and raffle drawing? Reports and backups will remain available.';if(confirm(msg)){eventLocked=!eventLocked;localStorage.setItem('pdw27-event-locked',eventLocked?'1':'0');renderReport();notice(eventLocked?'EVENT LOCKED · records are now read-only.':'EVENT UNLOCKED.')}};$('prepare').onclick=prepareOffline;checkOffline()}
 async function checkOffline(){if(!('serviceWorker'in navigator)){if($('offlineStatus'))$('offlineStatus').textContent='✕ Service worker not supported.';return}try{const names=await caches.keys(),cacheName=names.find(n=>n.startsWith('pdw27-offline-')),cache=cacheName?await caches.open(cacheName):null,ready=cache&&await cache.match(new URL('index.html',location.href).href),storage=(()=>{try{localStorage.setItem('pdw27-test','ok');localStorage.removeItem('pdw27-test');return true}catch{return false}})(),qr=typeof qrcode==='function',scanner=typeof jsQR==='function',roster=Array.isArray(people);if($('offlineStatus'))$('offlineStatus').innerHTML='<strong>OFFLINE READINESS CHECK</strong><br>'+(ready?'✓':'✕')+' App cached<br>'+(roster?'✓':'✕')+' Attendee database · '+people.length+' records<br>'+(qr?'✓':'✕')+' QR generator<br>'+(scanner?'✓':'✕')+' QR scanner<br>'+(storage?'✓':'✕')+' Local storage<br><strong>'+(ready&&roster&&qr&&scanner&&storage?'READY FOR OFFLINE EVENT USE':'NOT READY · tap Prepare offline while connected')+'</strong>'}catch{if($('offlineStatus'))$('offlineStatus').textContent='Could not verify offline files.'}}
 async function prepareOffline(){try{if(!('serviceWorker'in navigator))throw Error('Offline mode needs a supported browser on HTTPS.');$('offlineStatus').textContent='Saving app files…';const reg=await navigator.serviceWorker.register('./sw.js');await reg.update();await navigator.serviceWorker.ready;if(navigator.storage?.persist)await navigator.storage.persist();await checkOffline()}catch(e){$('offlineStatus').textContent='Offline setup failed. Stay online and retry. '+e.message}}
 function setup(){stopCamera();$('stationDialog').showModal()}
