@@ -172,3 +172,18 @@ function decorateModule(id){
  };
  if(summaries[id]){const box=document.createElement('div');box.className='module-summary';box.innerHTML=summaries[id].map(([n,label])=>'<div><b>'+n+'</b><span>'+label+'</span></div>').join('');steps.after(box)}
 }
+
+
+/* ORBIT-FIRST START */
+document.addEventListener('DOMContentLoaded',()=>{
+  try{
+    active='home';
+    selected=null;
+    stopCamera();
+    $('content').hidden=true;
+    $('orbitHome').hidden=false;
+    document.querySelectorAll('[data-module]').forEach(b=>b.classList.remove('active'));
+    stats();
+    window.scrollTo(0,0);
+  }catch(e){}
+});
