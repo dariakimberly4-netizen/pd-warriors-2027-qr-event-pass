@@ -6,8 +6,9 @@
 <title>PD Warriors 2027 QR Event Pass</title>
 <link rel="stylesheet" href="responsive-v105.css?v=105">
 <link rel="stylesheet" href="desktop-landscape-v107.css?v=107">
+<link rel="stylesheet" href="event-details-v108.css?v=108">
 </head>
-<body data-build="107" data-screen="orbit">
+<body data-build="108" data-screen="orbit">
 <div class="toolbar">
   <span id="connection"></span>
   <button id="chooseStation" class="secondary"><span id="stationLabel">Choose station</span> ▾</button>
@@ -38,6 +39,7 @@
       <button type="button" class="poster-hotspot" data-module="scan" aria-label="QR scan" title="QR scan" style="--x:24.12109%;--y:66.60156%"><span class="sr-only">QR scan</span></button>
       <button type="button" class="poster-hotspot" data-module="attendees" aria-label="Roster" title="Roster" style="--x:13.76953%;--y:50.78125%"><span class="sr-only">Roster</span></button>
       <button type="button" class="poster-hotspot" data-module="report" aria-label="Reports & setup" title="Reports & setup" style="--x:24.41406%;--y:35.28646%"><span class="sr-only">Reports & setup</span></button>
+      <button type="button" id="eventDetailsOpen" aria-label="Open Event Details" aria-haspopup="dialog" aria-controls="eventDetailsDialog"><span>Event Details</span></button>
     </nav>
   </div>
 
@@ -47,6 +49,25 @@
     <div id="view"></div>
   </section>
 </main>
+
+<dialog id="eventDetailsDialog" aria-labelledby="eventDetailsTitle">
+  <div class="event-details-inner">
+    <form method="dialog"><button class="event-details-back" autofocus>← Back to orbit</button></form>
+    <p class="event-details-kicker">PARKINSON’S DISEASE WARRIORS PHILIPPINES</p>
+    <h1 id="eventDetailsTitle">Get Together <span>2027</span></h1>
+    <p class="event-details-theme">New Hope: Moving Forward Beyond Parkinson’s</p>
+    <dl class="event-details-facts">
+      <div><dt>Date</dt><dd>January 16, 2027</dd></div>
+      <div><dt>Time</dt><dd>9:00 AM – 1:00 PM <small>Philippine time</small></dd></div>
+      <div><dt>Venue</dt><dd>St. Luke’s Medical Center – Quezon City</dd></div>
+    </dl>
+    <div class="event-details-sections">
+      <section><h2>Program schedule</h2><p>The final program and session times will be posted here once confirmed.</p></section>
+      <section><h2>Need assistance?</h2><p>Please approach the registration team at the event. The designated contact person and contact details will be posted here once confirmed.</p></section>
+    </div>
+    <p class="event-details-footer">One QR for attendance, snack, lunch and raffle.</p>
+  </div>
+</dialog>
 
 <dialog id="stationDialog">
   <form id="stationForm">
@@ -65,5 +86,6 @@
 <script src="vendor/qrcode-utf8.js"></script>
 <script src="vendor/jsQR.js"></script>
 <script src="app.js?v=105"></script>
+<script src="event-details-v108.js?v=108"></script>
 </body>
 </html>
