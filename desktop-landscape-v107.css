@@ -1,0 +1,44 @@
+/* Desktop only. Existing phone artwork and module styles remain unchanged. */
+.landscape-only{display:none}
+@media(min-width:900px) and (min-aspect-ratio:6/5) and (pointer:fine){
+body[data-screen="orbit"] #orbitHome .poster-orbit{background:#fffdf2!important}
+body[data-screen="orbit"] #orbitHome .poster-orbit>img{display:none!important}
+body[data-screen="orbit"] .landscape-only{display:block}
+.landscape-heading{position:absolute;top:3.5%;left:10%;width:80%;text-align:center;color:#064b32;font-family:Georgia,serif}
+.landscape-heading p{margin:0 0 1vh;font-size:clamp(16px,2.6vh,30px);font-weight:700;letter-spacing:.055em}
+.landscape-heading h1{margin:0;font-size:clamp(32px,6.7vh,76px);line-height:1.08;letter-spacing:-.02em}
+.landscape-heading h1 span{color:#ae1022}
+.landscape-heading:after{content:"";display:block;width:72%;height:2px;background:#caa64d;margin:2vh auto 0}
+.landscape-ring{position:absolute;left:17%;top:32%;width:66%;height:50%;border:2px solid #d2af55;border-radius:50%;pointer-events:none}
+.landscape-center{position:absolute;left:50%;top:57%;transform:translate(-50%,-50%);width:min(26vw,35vh);aspect-ratio:1;border-radius:50%;background-image:url("assets/event-portal.jpg?v=102");background-size:243.80952% 365.71429%;background-position:49.83443708609271% 51.971326164874554%;box-shadow:0 12px 28px #8a651c25;pointer-events:none}
+.landscape-note{position:absolute;bottom:1.5%;left:20%;width:60%;text-align:center;font:600 clamp(12px,2.1vh,24px) Georgia,serif;color:#064b32;margin:0}
+body[data-screen="orbit"] #orbitHome .poster-hotspot{width:min(16vw,20vh)!important;height:min(16vw,20vh)!important;min-width:0!important;min-height:0!important;background-image:url("assets/event-portal.jpg?v=102")!important;background-size:465.454545% 698.181818%!important;background-repeat:no-repeat!important;box-shadow:0 8px 22px #8a651c25!important;border-radius:50%!important;transition:box-shadow .15s ease}
+body[data-screen="orbit"] #orbitHome .poster-hotspot:hover{box-shadow:0 0 0 4px #d5b466,0 10px 25px #8a651c35!important}
+body[data-screen="orbit"] #orbitHome .poster-hotspot:focus-visible{outline:4px solid #064b32!important;outline-offset:4px}
+body[data-screen="orbit"] #orbitHome .poster-hotspot[data-module="registration"]{left:50%!important;top:32%!important;background-position:49.875621890547265% 25.151975683890576%!important}
+body[data-screen="orbit"] #orbitHome .poster-hotspot[data-module="walkin"]{left:73.3%!important;top:39.3%!important;background-position:81.8407960199005% 32.82674772036474%!important}
+body[data-screen="orbit"] #orbitHome .poster-hotspot[data-module="snack"]{left:83%!important;top:57%!important;background-position:95.77114427860697% 50.911854103343465%!important}
+body[data-screen="orbit"] #orbitHome .poster-hotspot[data-module="lunch"]{left:73.3%!important;top:74.7%!important;background-position:82.46268656716418% 69.30091185410335%!important}
+body[data-screen="orbit"] #orbitHome .poster-hotspot[data-module="raffle"]{left:50%!important;top:82%!important;background-position:49.875621890547265% 77.81155015197568%!important}
+body[data-screen="orbit"] #orbitHome .poster-hotspot[data-module="scan"]{left:26.7%!important;top:74.7%!important;background-position:17.039800995024876% 69.37689969604864%!important}
+body[data-screen="orbit"] #orbitHome .poster-hotspot[data-module="attendees"]{left:17%!important;top:57%!important;background-position:3.8557213930348255% 50.911854103343465%!important}
+body[data-screen="orbit"] #orbitHome .poster-hotspot[data-module="report"]{left:26.7%!important;top:39.3%!important;background-position:17.412935323383085% 32.82674772036474%!important}
+}
+/* Balanced desktop geometry: consistent module sizes and clear space around the center. */
+@media(min-width:900px) and (min-aspect-ratio:6/5) and (pointer:fine){
+body[data-screen="orbit"] #orbitHome .poster-orbit{--orbit-rx:min(29vw,40vh);--orbit-diag:min(20.5061vw,28.2843vh)}
+.landscape-heading{top:3%}
+.landscape-heading h1{font-size:clamp(32px,6vh,68px)}
+.landscape-heading p{font-size:clamp(16px,2.4vh,28px)}
+.landscape-center{top:57%;width:27vh}
+.landscape-ring{left:calc(50% - var(--orbit-rx));top:30%;width:calc(var(--orbit-rx) + var(--orbit-rx));height:54%}
+body[data-screen="orbit"] #orbitHome .poster-hotspot{width:18vh!important;height:18vh!important}
+body[data-screen="orbit"] #orbitHome .poster-hotspot[data-module="registration"]{left:50%!important;top:30%!important}
+body[data-screen="orbit"] #orbitHome .poster-hotspot[data-module="walkin"]{left:calc(50% + var(--orbit-diag))!important;top:37.9081%!important}
+body[data-screen="orbit"] #orbitHome .poster-hotspot[data-module="snack"]{left:calc(50% + var(--orbit-rx))!important;top:57%!important}
+body[data-screen="orbit"] #orbitHome .poster-hotspot[data-module="lunch"]{left:calc(50% + var(--orbit-diag))!important;top:76.0919%!important}
+body[data-screen="orbit"] #orbitHome .poster-hotspot[data-module="raffle"]{left:50%!important;top:84%!important}
+body[data-screen="orbit"] #orbitHome .poster-hotspot[data-module="scan"]{left:calc(50% - var(--orbit-diag))!important;top:76.0919%!important}
+body[data-screen="orbit"] #orbitHome .poster-hotspot[data-module="attendees"]{left:calc(50% - var(--orbit-rx))!important;top:57%!important}
+body[data-screen="orbit"] #orbitHome .poster-hotspot[data-module="report"]{left:calc(50% - var(--orbit-diag))!important;top:37.9081%!important}
+}
