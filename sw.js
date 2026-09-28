@@ -1,5 +1,5 @@
-const CACHE='pdw27-offline-v110';
-const ASSETS=['./desktop-modules-v110.css?v=110','./documents-v109.css?v=109','./documents-v109.js?v=109','./event-details-v108.css?v=108','./event-details-v108.js?v=108','./desktop-landscape-v107.css?v=107','https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js','./','./index.html','./mobile.html','./responsive-v105.css?v=105','./app.js?v=105','./modules-v73.css?v=77','./assets/event-portal.jpg?v=102','./vendor/qrcode.js','./vendor/qrcode-utf8.js','./vendor/jsQR.js'];
+const CACHE='pdw27-offline-v111';
+const ASSETS=['./desktop-modules-v110.css?v=111','./documents-v109.css?v=109','./documents-v109.js?v=109','./event-details-v108.css?v=108','./event-details-v108.js?v=108','./desktop-landscape-v107.css?v=107','https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js','./','./index.html','./mobile.html','./responsive-v105.css?v=105','./app.js?v=105','./modules-v73.css?v=77','./assets/event-portal.jpg?v=102','./vendor/qrcode.js','./vendor/qrcode-utf8.js','./vendor/jsQR.js'];
 
 self.addEventListener('install',e=>{
   self.skipWaiting();
